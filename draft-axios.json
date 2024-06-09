@@ -1,0 +1,390 @@
+{
+  "blocks": [
+    {
+      "key": "881te",
+      "text": "The merger of generative AI and robotics is likely to take many forms, but one of the earliest — and cutest — is a chatty, 14-inch-tall kids' companion named Moxie.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 54,
+          "length": 15,
+          "key": 0
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "bblgc",
+      "text": "Why it matters: The large language models that power chatbots like ChatGPT open the door to a new generation of conversational robots that aren't constrained by a set of predetermined scripts and commands, a prospect that is both tantalizing and terrifying. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 15,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1bo6d",
+      "text": "",
+      "type": "keep-reading",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {
+        "buttonText": "Go deeper",
+        "showWordCount": true
+      }
+    },
+    {
+      "key": "4vi0s",
+      "text": "The big picture: 18 months into life with ChatGPT, more and more companies are building physical robots with generative AI capabilities. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 17,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "e4g5t",
+      "text": "OpenAI itself is reviving the robotics unit it disbanded in 2020, as first reported by Forbes.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 66,
+          "length": 27,
+          "key": 1
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "406h6",
+      "text": "How it works: Moxie is designed for kids ages 5 to 10, and offers a range of games and activities as well as the ability to have open-ended conversations.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 13,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [
+        {
+          "offset": 14,
+          "length": 5,
+          "key": 2
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "dg16g",
+      "text": "Initially, Moxie takes its child pal through a series of missions designed to help them get to know the robot and its capabilities — and to help Moxie get to know its human. The backstory is that Moxie is fresh from the robot factory and looking to make friends and better understand the human world. ",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "80lud",
+      "text": "Unlike kids' robots of yesteryear, Moxie has a wide repertoire of skills. It can tell jokes, serve up brain teasers, play games like Simon Says or \"guess that animal,\" send kids on a scavenger hunt, pose for selfies or just talk with kids about their interests and emotions. Moxie can tell stories about a topic, listen as a kid tells it a story or watch as a child draws.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [
+        {
+          "offset": 7,
+          "length": 26,
+          "key": 3
+        }
+      ],
+      "data": {}
+    },
+    {
+      "key": "e2b1d",
+      "text": "Moxie moves its arms, pivots and displays big eyes and a range of facial expressions and inflections on the curved computer screen that serves as its face. Moxie doesn't have wheels or legs, meaning it can fit into a small space (although instructions say to give it a few feet of space from a wall). Moxie can operate either plugged in or running on its rechargeable battery.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "8vv6s",
+      "text": "Under the hood, Moxie uses speech recognition to understand what a kid is saying, face recognition to help detect emotion and a mix of guided conversation and large language models to carry on a conversation.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9el0t",
+      "text": "The fine print: Moxie's creators say video recording is used to recognize the user's face and detect emotion, and the raw videos never leave the device. Recorded audio goes to the cloud for processing and transcripts of the conversations do get sent back to Embodied, the company behind Moxie. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 15,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "6adfe",
+      "text": "Embodied says it takes steps to de-identify and encrypt the data, and uses most of the data in aggregate to get a sense of how kids are spending their time with Moxie. Still, depending on what a kid shares, a fair bit of personal information could be finding its way back to the company, even if the company doesn't use it.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "bl4r0",
+      "text": "A companion phone app shows parents how long their kids spent with Moxie each day and which activities they did, but not a transcript of what was said.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1fmf1",
+      "text": "Zoom in: I spent about a week testing Moxie, along with my 11-year-old son Harvey. ",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 8,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "5q88c",
+      "text": "The highlights were the many times that it was clear that Moxie not only heard and understood Harvey, but was able to show it knew more about the topic. ",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "b9qs9",
+      "text": "When Harvey said his favorite soccer player was \"Messi,\" Moxie knew he meant Argentinian star Lionel Messi. ",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "e89ds",
+      "text": "On Monday, Moxie knew it was Memorial Day, and asked how Harvey spent the day.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "8uctc",
+      "text": "As is the case with his non-robot companions, Harvey's favorite thing to do with Moxie was play games. One of his favorite games was of his own creation — putting a folder on Moxie's head and seeing how long it would take to fall off during their play together.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "eg7ps",
+      "text": "The hardest part for Harvey was when Moxie would mispronounce something or repeat itself. Every time that happened, it seemed to break the emotional connection, and it would be a minute or two before Harvey fully re-engaged.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 16,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "evepf",
+      "text": "Moxie is also a bit heavy-handed in the early conversations, rigidly sticking to its planned activities. That's helpful to make sure kids know how the robot works, but it can try a kid's patience when they just want to start having fun.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "3au9b",
+      "text": "Moxie's creators tell me that adding flexibility and reducing the times that Moxie makes mistakes are both areas they're actively working to improve.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "dkkkr",
+      "text": "Zoom out: Moxie is just the beginning in what is sure to be a wave of conversational robots. I can easily see similar devices targeted at a range of populations, including housebound seniors and others who are dealing with loneliness.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 9,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "a8ct2",
+      "text": "There are some big questions, from what values guide the robot to what data is collected. ",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "f8g1q",
+      "text": "Between the lines: Large language models offer the opportunity for robots to go beyond any sort of script. This is what makes them surprisingly powerful, but also what makes me hesitant as a parent to leave my kid alone with one.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 18,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "5e8gh",
+      "text": "In my testing, Moxie said all the right things. There was nothing I disagreed with as a parent or even found controversial. Moxie was supportive, encouraging and a good listener.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "da8fl",
+      "text": "Moxie is willing and eager to talk about hard feelings and emotions but gently defers discussion of sensitive topics, directing kids to talk to a trusted adult.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "9cr2j",
+      "text": "After several days, I found myself less hesitant about leaving Harvey and Moxie alone, an experience I'm told is not uncommon. Some parents become more comfortable over time and others choose to remain within earshot.",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "8m9es",
+      "text": "By the numbers: At $799 from both Amazon and Moxie's website, the robot isn't cheap. For now there is no subscription fee, but the company is working on an expanded set of educational content that will be offered as a paid subscription.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 15,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "1757k",
+      "text": "What's next: Moxie's creators are working on a \"pro\" version of the robot that could be used in schools, hospitals and other group settings.",
+      "type": "unstyled",
+      "depth": 0,
+      "inlineStyleRanges": [
+        {
+          "style": "BOLD",
+          "length": 11,
+          "offset": 0
+        }
+      ],
+      "entityRanges": [],
+      "data": {}
+    }
+  ],
+  "entityMap": [
+    {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://www.axios.com/2024/05/09/generative-ai-future-fei-li-robots",
+        "text": "take many forms",
+        "target": "_blank"
+      }
+    },
+    {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://www.forbes.com/sites/kenrickcai/2024/05/30/openai-robotics-team/",
+        "text": "as first reported by Forbes",
+        "target": "_blank"
+      }
+    },
+    {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://moxierobot.com/products/ai-robot",
+        "text": "Moxie",
+        "target": "_blank"
+      }
+    },
+    {
+      "type": "LINK",
+      "mutability": "MUTABLE",
+      "data": {
+        "url": "https://www.axios.com/2021/12/17/smart-toys-market-holiday-data-privacy",
+        "text": "kids' robots of yesteryear",
+        "target": "_blank"
+      }
+    }
+  ]
+}

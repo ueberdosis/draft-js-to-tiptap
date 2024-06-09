@@ -1,301 +1,129 @@
-export type MarkType = {
-  type: string;
-  attrs?: Record<string, any>;
+export type MarkType<
+  Type extends string = string,
+  Attributes extends Record<string, any> = Record<string, any>
+> = {
+  type: Type;
+  attrs?: Attributes;
 };
 
-export type TextType = {
+export type NodeType<
+  TNodeType extends string = string,
+  TNodeAttributes extends Record<string, any> = Record<string, any>,
+  TMarkType extends MarkType = MarkType,
+  TContentType extends NodeType[] = any
+> = {
+  type: TNodeType;
+  attrs?: TNodeAttributes;
+  content?: TContentType;
+  marks?: TMarkType[];
+};
+
+export type DocumentType<
+  TNodeAttributes extends Record<string, any> = Record<string, any>,
+  TContentType extends NodeType[] = NodeType[]
+> = NodeType<"doc", TNodeAttributes, never, TContentType>;
+
+export type TextType<TMarkType extends MarkType = MarkType> = {
   type: "text";
   text: string;
-  marks?: MarkType[];
+  marks: TMarkType[];
 };
 
-export type AnyJSONContent = {
-  type: string;
-  attrs?: Record<string, any>;
-  content?: JSONContent[];
-  marks?: MarkType[];
-};
-
-export type JSONContent = TextType | AnyJSONContent;
-
-export type DocumentType = {
-  type: string;
-  content: JSONContent[];
-};
-
-export type DefaultContext = {
-  parentNode?: Node;
-};
-
-export class Node {
-  public type: string;
-  public attrs?: Record<string, any>;
-  public content?: Node[];
-  public marks?: Mark[];
-  public text?: string;
-
-  constructor({
-    type,
-    attrs,
-    content,
-    marks,
-    text,
-  }: {
-    type: string;
-    attrs?: Record<string, any>;
-    content?: Node[] | JSONContent[];
-    marks?: Mark[] | MarkType[];
-    text?: string;
-  }) {
-    this.type = type;
-    this.attrs = attrs;
-    if (content && Array.isArray(content)) {
-      this.content = content.map((node) => {
-        if (node instanceof Node) {
-          return node;
-        }
-        return new Node(node);
-      });
-    }
-    if (marks && Array.isArray(marks)) {
-      this.marks = marks.map((mark) => {
-        if (mark instanceof Mark) {
-          return mark;
-        }
-        return new Mark(mark);
-      });
-    }
-    this.text = text;
+/**
+ * Add a child node to a parent node.
+ * @returns The parent node with the child node added.
+ */
+export function addChild<T extends NodeType>(
+  node: T,
+  child: T["content"][number] | null
+): T {
+  if (!node && !child) {
+    throw new Error("Cannot add a null child to a null parent.");
   }
 
-  /**
-   * Adds a mark to the node.
-   * @param mark The mark to add.
-   */
-  addMark(mark: Mark | MarkType | null) {
-    if (!mark) {
-      return this;
-    }
-
-    if (!this.marks) {
-      this.marks = [];
-    }
-    if (mark instanceof Mark) {
-      this.marks.push(mark);
-    } else {
-      this.marks.push(new Mark(mark));
-    }
-    return this;
+  if (!child) {
+    return node;
   }
 
-  /**
-   * Adds a node to the content of the node.
-   * @param node The node to add.
-   */
-  addNode(node: Node | null) {
-    if (!node) {
-      return this;
-    }
-    if (!this.content) {
-      this.content = [];
-    }
-    this.content.push(node);
-    return this;
+  if (!node.content) {
+    node.content = [];
   }
 
-  /**
-   * Inserts an node at a specific index in the content of the node.
-   * @param node The node to insert.
-   * @param index The index at which to insert the node.
-   */
-  insertNode(node: Node | null, index?: number) {
-    if (!node) {
-      return this;
-    }
-    if (!this.content) {
-      this.content = [];
-    }
-    if (index === undefined) {
-      return this.addNode(node);
-    }
-    this.content.splice(index, 0, node);
-    return this;
-  }
+  node.content.push(child);
 
-  /**
-   * Removes an node from the content of the node.
-   * @param index The index of the node to remove.
-   */
-  removeNode(index: number) {
-    if (this.content && this.content.length > index) {
-      this.content.splice(index, 1);
-    }
-    return this;
-  }
-
-  /**
-   * Sets the attributes of the node.
-   * @param attrs The attributes to set.
-   */
-  setAttributes(attrs: AnyJSONContent["attrs"]) {
-    this.attrs = { ...this.attrs, ...attrs };
-    return this;
-  }
-
-  /**
-   * Adds an attribute to the node.
-   * @param name The key of the attribute to add.
-   * @param value The value of the attribute to add.
-   */
-  addAttribute(name: string, value: any) {
-    this.attrs = {
-      ...this.attrs,
-      [name]: value,
-    };
-    return this;
-  }
-
-  /**
-   * Removes an attribute from the node.
-   * @param name The name of the attribute to remove.
-   */
-  removeAttribute(name: string) {
-    if (this.attrs) {
-      delete this.attrs[name];
-    }
-
-    return this;
-  }
-
-  toJSON(): {
-    type: string;
-    attrs?: Record<string, any>;
-    content?: JSONContent[];
-    marks?: MarkType[];
-    text?: string;
-  } {
-    const obj: {
-      type: string;
-      attrs?: Record<string, any>;
-      content?: JSONContent[];
-      marks?: MarkType[];
-      text?: string;
-    } = {
-      type: this.type,
-    };
-
-    if (this.attrs) {
-      obj.attrs = this.attrs;
-    }
-
-    if (this.content) {
-      obj.content = this.content.map((node) => node.toJSON());
-    }
-
-    if (this.marks) {
-      obj.marks = this.marks.map((mark) => mark.toJSON());
-    }
-
-    if (this.text) {
-      obj.text = this.text;
-    }
-
-    return obj;
-  }
+  return node;
 }
 
-export class Mark {
-  public type: string;
-  public attrs?: Record<string, any>;
-
-  constructor({ type, attrs }: MarkType) {
-    this.type = type;
-    this.attrs = attrs;
+/**
+ * Add a mark to a node.
+ * @returns The node with the mark added.
+ */
+export function addMark<T extends NodeType>(node: T, mark: MarkType | null): T {
+  if (!node && !mark) {
+    throw new Error("Cannot add a null mark to a null node.");
   }
 
-  /**
-   * Sets the attributes of the node.
-   * @param attrs The attributes to set.
-   */
-  setAttributes(attrs: AnyJSONContent["attrs"]) {
-    this.attrs = { ...this.attrs, ...attrs };
-    return this;
+  if (!mark) {
+    return node;
   }
 
-  /**
-   * Adds an attribute to the node.
-   * @param name The key of the attribute to add.
-   * @param value The value of the attribute to add.
-   */
-  addAttribute(name: string, value: any) {
-    this.attrs = {
-      ...this.attrs,
-      [name]: value,
-    };
-    return this;
+  if (!node.marks) {
+    node.marks = [];
   }
 
-  toJSON(): MarkType {
-    return {
-      type: this.type,
-      attrs: this.attrs,
-    };
-  }
+  node.marks.push(mark);
+
+  return node;
 }
 
-export class Text extends Node {
-  constructor({ text, marks }: { text: string; marks?: Mark[] | MarkType[] }) {
-    super({ type: "text", text, marks });
-  }
-  addAttribute(_name: string, _value: any): this {
-    throw new Error("Text nodes cannot have attributes.");
-  }
-  setAttributes(_attrs: AnyJSONContent["attrs"]): this {
-    throw new Error("Text nodes cannot have attributes.");
-  }
-  addNode(_node: Node): this {
-    throw new Error("Text nodes cannot have content.");
-  }
-  insertNode(_node: Node, _index?: number): this {
-    throw new Error("Text nodes cannot have content.");
-  }
-  removeNode(_index: number): this {
-    throw new Error("Text nodes cannot have content.");
-  }
-  toJSON(): TextType {
-    const obj: TextType = {
-      type: "text",
-      text: this.text!,
-    };
+export type NodeMapping = {
+  blockquote: NodeType<"blockquote">;
+  bulletList: NodeType<
+    "bulletList",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  codeBlock: NodeType<"codeBlock">;
+  hardBreak: NodeType<"hardBreak">;
+  heading: NodeType<"heading", { level: number }>;
+  horizontalRule: NodeType<"horizontalRule">;
+  image: NodeType<"image", { src: string }>;
+  listItem: NodeType<
+    "listItem",
+    Record<string, any>,
+    MarkType,
+    (NodeType<"bulletList"> | NodeType<"orderedList"> | NodeType<"paragraph">)[]
+  >;
+  orderedList: NodeType<
+    "orderedList",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  paragraph: NodeType<"paragraph">;
+};
 
-    if (this.marks) {
-      obj.marks = this.marks.map((mark) => mark.toJSON());
-    }
-
-    return obj;
-  }
+// export function createNode<T extends string>(type: T): NodeType<T>;
+export function createNode<T extends keyof NodeMapping>(
+  type: T,
+  options?: Partial<Omit<NodeMapping[T], "type">>
+): NodeMapping[T] {
+  return { type, ...options } as NodeMapping[T];
 }
 
-export class Document extends Node {
-  constructor() {
-    super({ type: "doc", content: [] });
-  }
-  addAttribute(_name: string, _value: any): this {
-    throw new Error("Text nodes cannot have attributes.");
-  }
-  setAttributes(_attrs: AnyJSONContent["attrs"]): this {
-    throw new Error("Text nodes cannot have attributes.");
-  }
-  toJSON(): DocumentType {
-    const obj: DocumentType = {
-      type: "doc",
-      content: [],
-    };
+export function createDocument(): DocumentType {
+  return { type: "doc", content: [] };
+}
 
-    if (this.content) {
-      obj.content = this.content.map((node) => node.toJSON());
-    }
+export function createText(text: string, marks?: MarkType[]): TextType {
+  return { type: "text", text, marks: marks || [] };
+}
 
-    return obj;
-  }
+export function isListNode(
+  node: NodeType | null | undefined
+): node is NodeMapping["bulletList"] | NodeMapping["orderedList"] {
+  return Boolean(
+    node && (node.type === "bulletList" || node.type === "orderedList")
+  );
 }

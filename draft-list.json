@@ -1,0 +1,95 @@
+{
+  "entityMap": {},
+  "blocks": [
+    {
+      "key": "14ddo",
+      "text": "Level 1",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "59gth",
+      "text": "Level 2",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "59bth",
+      "text": "Level 3",
+      "type": "unordered-list-item",
+      "depth": 2,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 4",
+      "type": "unordered-list-item",
+      "depth": 3,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 2 Again",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 3 Again",
+      "type": "unordered-list-item",
+      "depth": 2,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 1 Again",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 4 Again",
+      "type": "unordered-list-item",
+      "depth": 3,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 1 Again",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "24bth",
+      "text": "Level 2 Again",
+      "type": "unordered-list-item",
+      "depth": 1,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ]
+}
