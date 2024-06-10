@@ -1,3 +1,5 @@
+import type { RawDraftEntityRange, RawDraftInlineStyleRange } from "draft-js";
+
 export type MarkType<
   Type extends string = string,
   Attributes extends Record<string, any> = Record<string, any>
@@ -27,6 +29,34 @@ export type TextType<TMarkType extends MarkType = MarkType> = {
   type: "text";
   text: string;
   marks: TMarkType[];
+};
+
+export type NodeMapping = {
+  blockquote: NodeType<"blockquote">;
+  bulletList: NodeType<
+    "bulletList",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  codeBlock: NodeType<"codeBlock">;
+  hardBreak: NodeType<"hardBreak">;
+  heading: NodeType<"heading", { level: number }>;
+  horizontalRule: NodeType<"horizontalRule">;
+  image: NodeType<"image", { src: string }>;
+  listItem: NodeType<
+    "listItem",
+    Record<string, any>,
+    MarkType,
+    (NodeType<"bulletList"> | NodeType<"orderedList"> | NodeType<"paragraph">)[]
+  >;
+  orderedList: NodeType<
+    "orderedList",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  paragraph: NodeType<"paragraph">;
 };
 
 /**
@@ -76,34 +106,6 @@ export function addMark<T extends NodeType>(node: T, mark: MarkType | null): T {
   return node;
 }
 
-export type NodeMapping = {
-  blockquote: NodeType<"blockquote">;
-  bulletList: NodeType<
-    "bulletList",
-    Record<string, any>,
-    MarkType,
-    NodeMapping["listItem"][]
-  >;
-  codeBlock: NodeType<"codeBlock">;
-  hardBreak: NodeType<"hardBreak">;
-  heading: NodeType<"heading", { level: number }>;
-  horizontalRule: NodeType<"horizontalRule">;
-  image: NodeType<"image", { src: string }>;
-  listItem: NodeType<
-    "listItem",
-    Record<string, any>,
-    MarkType,
-    (NodeType<"bulletList"> | NodeType<"orderedList"> | NodeType<"paragraph">)[]
-  >;
-  orderedList: NodeType<
-    "orderedList",
-    Record<string, any>,
-    MarkType,
-    NodeMapping["listItem"][]
-  >;
-  paragraph: NodeType<"paragraph">;
-};
-
 // export function createNode<T extends string>(type: T): NodeType<T>;
 export function createNode<T extends keyof NodeMapping>(
   type: T,
@@ -126,4 +128,16 @@ export function isListNode(
   return Boolean(
     node && (node.type === "bulletList" || node.type === "orderedList")
   );
+}
+
+export function isInlineStyleRange(
+  range: RawDraftInlineStyleRange | RawDraftEntityRange
+): range is RawDraftInlineStyleRange {
+  return "style" in range;
+}
+
+export function isEntityRange(
+  range: RawDraftInlineStyleRange | RawDraftEntityRange
+): range is RawDraftEntityRange {
+  return "key" in range;
 }
