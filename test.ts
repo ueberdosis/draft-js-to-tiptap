@@ -1,11 +1,7 @@
-import { DraftConverter } from ".";
+import { DraftConverter } from "./src/index";
 import draft from "./draft-drafttail.json";
 
-const converter = new DraftConverter({
-  mapBlockToNode: function ({ defaultRenderer, ...ctx }) {
-    return defaultRenderer(ctx);
-  },
-});
+const converter = new DraftConverter();
 
 const output = converter.convertFromDraft(draft as any);
 
