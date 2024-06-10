@@ -117,7 +117,7 @@ export const entityToNode: Record<
 
 export class DraftConverter {
   public unmatchedBlocks: RawDraftContentBlock[] = [];
-  public unmatchedEntities: RawDraftEntity[] = [];
+  public unmatchedEntities: { [key: string]: RawDraftEntity } = {};
   public unmatchedInlineStyles: RawDraftInlineStyleRange[] = [];
   private options: DraftConverterOptions;
 
@@ -204,7 +204,7 @@ export class DraftConverter {
       return entity;
     }
 
-    this.unmatchedEntities.push(entityMap[range.key]);
+    this.unmatchedEntities[range.key] = entityMap[range.key];
     return null;
   }
 
@@ -302,11 +302,15 @@ export class DraftConverter {
         // Does it make sense to wrap them in a paragraph?
         const paragraph = createNode("paragraph");
         const entities = block.entityRanges
-          .map((range) =>
-            (this.options.mapEntityToNode || this.defaultEntityToNode).bind(
-              this
-            )(range, entityMap)
-          )
+          .map((range) => {
+            const entity = (
+              this.options.mapEntityToNode || this.defaultEntityToNode
+            ).bind(this)(range, entityMap);
+            if (!entity) {
+              this.unmatchedEntities[range.key] = entityMap[range.key];
+            }
+            return entity;
+          })
           .filter(Boolean);
         if (entities.length === 0) {
           return null;
