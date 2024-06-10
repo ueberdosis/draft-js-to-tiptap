@@ -104,6 +104,9 @@ export const entityToNode: Record<
   string,
   (entity: RawDraftEntity) => NodeType | null
 > = {
+  HORIZONTAL_RULE: () => {
+    return createNode("horizontalRule");
+  },
   IMAGE: (entity) => {
     return {
       type: "image",
