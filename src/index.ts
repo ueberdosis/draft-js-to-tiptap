@@ -1,3 +1,3 @@
 export * from "./draftConverter";
-export * from "./mappings";
+export * from "./mappings/blockToNode";
 export * from "./utils";

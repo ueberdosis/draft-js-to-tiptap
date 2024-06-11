@@ -13,11 +13,13 @@ import {
   addChild,
   addMark,
   createDocument,
+  createText,
+  isInlineStyleRange,
 } from "./utils";
 import {
-  entityToMark,
-  entityToNode,
-  inlineStyleToMark,
+  mapInlineStyleToMark,
+  mapEntityToMark,
+  mapEntityToNode,
   mapBlockToNode,
 } from "./mappings";
 
@@ -80,97 +82,42 @@ export type DraftConverterOptions = {
 };
 
 export class DraftConverter {
-  public unmatchedBlocks: RawDraftContentBlock[] = [];
-  public unmatchedEntities: { [key: string]: RawDraftEntity } = {};
-  public unmatchedInlineStyles: RawDraftInlineStyleRange[] = [];
+  /**
+   * Any unmatched blocks, entities, or inline styles that were not converted.
+   */
+  public unmatched: {
+    blocks: RawDraftContentBlock[];
+    entities: { [key: string]: RawDraftEntity };
+    inlineStyles: RawDraftInlineStyleRange[];
+  } = {
+    blocks: [],
+    entities: {},
+    inlineStyles: [],
+  };
   public options: DraftConverterOptions;
 
   constructor(options?: Partial<DraftConverterOptions>) {
     this.options = {
-      mapBlockToNode: this.defaultMapBlockToNode,
-      mapInlineStyleToMark: this.defaultInlineStyleToMark,
-      mapEntityToMark: this.defaultEntityToMark,
-      mapEntityToNode: this.defaultEntityToNode,
+      mapBlockToNode: mapBlockToNode,
+      mapInlineStyleToMark: mapInlineStyleToMark,
+      mapEntityToMark: mapEntityToMark,
+      mapEntityToNode: mapEntityToNode,
       ...options,
     };
   }
-
-  defaultInlineStyleToMark({ style }: { style: string }): MarkType | null {
-    if (inlineStyleToMark[style]) {
-      return inlineStyleToMark[style];
-    }
-
-    if (style.startsWith("bgcolor-")) {
-      return {
-        type: "highlight",
-        attrs: {
-          color: style.replace("bgcolor-", ""),
-        },
-      };
-    }
-    if (style.startsWith("fontfamily-")) {
-      return {
-        type: "textStyle",
-        attrs: {
-          fontFamily: style.replace("fontfamily-", ""),
-        },
-      };
-    }
-    return null;
-  }
-
-  defaultEntityToNode(
-    { key }: RawDraftEntityRange,
-    entityMap: RawDraftContentState["entityMap"]
-  ): NodeType | null {
-    if (entityToNode[entityMap[key].type]) {
-      return entityToNode[entityMap[key].type](entityMap[key]);
-    }
-
-    return null;
-  }
-
-  defaultEntityToMark(
-    { key }: RawDraftEntityRange,
-    entityMap: RawDraftContentState["entityMap"]
-  ): MarkType | null {
-    if (entityToMark[entityMap[key].type]) {
-      return entityToMark[entityMap[key].type](entityMap[key]);
-    }
-
-    return null;
-  }
-
-  defaultMapBlockToNode: MapBlockToNodeFn = ({
-    block,
-    entityMap,
-    previousBlock,
-    previousNode,
-  }) => {
-    if (mapBlockToNode[block.type]) {
-      return mapBlockToNode[block.type].bind(this)({
-        block,
-        entityMap,
-        previousBlock,
-        previousNode,
-      });
-    }
-
-    return null;
-  };
 
   mapRangeToMark(
     range: RawDraftInlineStyleRange | RawDraftEntityRange,
     entityMap: RawDraftContentState["entityMap"]
   ): MarkType | null {
-    if ("style" in range) {
+    if (isInlineStyleRange(range)) {
       const inlineStyle = this.options.mapInlineStyleToMark.bind(this)(range);
 
       if (inlineStyle) {
         return inlineStyle;
       }
 
-      this.unmatchedInlineStyles.push(range);
+      this.unmatched.inlineStyles.push(range);
       return null;
     }
 
@@ -180,7 +127,7 @@ export class DraftConverter {
       return entity;
     }
 
-    this.unmatchedEntities[range.key] = entityMap[range.key];
+    this.unmatched.entities[range.key] = entityMap[range.key];
     return null;
   }
 
@@ -200,7 +147,18 @@ export class DraftConverter {
       return node;
     }
 
-    this.unmatchedBlocks.push(block);
+    this.unmatched.blocks.push(block);
+    return null;
+  };
+
+  mapEntityToNode: MapEntityToNodeFn = (range, entityMap) => {
+    const node = this.options.mapEntityToNode.bind(this)(range, entityMap);
+    if (node) {
+      return node;
+    }
+
+    this.unmatched.entities[range.key] = entityMap[range.key];
+
     return null;
   };
 
@@ -270,7 +228,7 @@ export class DraftConverter {
     }
 
     return result.map(({ text, ranges }) => {
-      const textNode: TextType = { type: "text", text, marks: [] };
+      const textNode = createText(text);
 
       ranges.forEach((range) =>
         addMark(textNode, this.mapRangeToMark(range, options.entityMap))
@@ -280,7 +238,7 @@ export class DraftConverter {
     });
   }
 
-  convertFromDraft(draft: RawDraftContentState) {
+  convert(draft: RawDraftContentState) {
     const doc = createDocument();
 
     let previousNode: NodeType | null = null;

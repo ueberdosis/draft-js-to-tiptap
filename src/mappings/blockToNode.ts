@@ -1,58 +1,5 @@
-import type { RawDraftEntity } from "draft-js";
-
-import {
-  type MarkType,
-  type NodeType,
-  addChild,
-  createNode,
-  createText,
-  isListNode,
-} from "./utils";
-import type { MapBlockToNodeFn } from "./draftConverter";
-
-export const inlineStyleToMark: Record<string, MarkType> = {
-  BOLD: { type: "bold" },
-  CODE: { type: "code" },
-  KEYBOARD: { type: "code" },
-  ITALIC: { type: "italic" },
-  STRIKETHROUGH: { type: "strike" },
-  UNDERLINE: { type: "underline" },
-  SUBSCRIPT: { type: "subscript" },
-  SUPERSCRIPT: { type: "superscript" },
-};
-
-export const entityToMark: Record<
-  string,
-  (entity: RawDraftEntity) => MarkType | null
-> = {
-  LINK: (entity) => {
-    return {
-      type: "link",
-      attrs: {
-        href: entity.data.url,
-        target: entity.data.target,
-      },
-    };
-  },
-};
-
-export const entityToNode: Record<
-  string,
-  (entity: RawDraftEntity) => NodeType | null
-> = {
-  HORIZONTAL_RULE: () => {
-    return createNode("horizontalRule");
-  },
-  IMAGE: (entity) => {
-    return {
-      type: "image",
-      attrs: {
-        src: entity.data.src,
-        alt: entity.data.alt,
-      },
-    };
-  },
-};
+import { addChild, createNode, createText, isListNode } from "../utils";
+import type { MapBlockToNodeFn } from "../draftConverter";
 
 /**
  * Lists are represented as a tree structure in ProseMirror.
@@ -154,7 +101,7 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({ block, entityMap }) {
   return heading;
 };
 
-export const mapBlockToNode: Record<string, MapBlockToNodeFn> = {
+export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
   atomic: function ({ block, entityMap }) {
     if (block.entityRanges.length === 0) {
       if (block.inlineStyleRanges.length === 0) {
@@ -167,13 +114,7 @@ export const mapBlockToNode: Record<string, MapBlockToNodeFn> = {
     const paragraph = createNode("paragraph");
     const entities = block.entityRanges
       .map((range) => {
-        const entity = (
-          this.options.mapEntityToNode || this.defaultEntityToNode
-        ).bind(this)(range, entityMap);
-        if (!entity) {
-          this.unmatchedEntities[range.key] = entityMap[range.key];
-        }
-        return entity;
+        return this.mapEntityToNode.bind(this)(range, entityMap);
       })
       .filter(Boolean);
     if (entities.length === 0) {
@@ -231,4 +172,22 @@ export const mapBlockToNode: Record<string, MapBlockToNodeFn> = {
   "header-four": mapToHeadingNode,
   "header-five": mapToHeadingNode,
   "header-six": mapToHeadingNode,
+};
+
+export const mapBlockToNode: MapBlockToNodeFn = function ({
+  block,
+  entityMap,
+  previousBlock,
+  previousNode,
+}) {
+  if (blockToNodeMapping[block.type]) {
+    return blockToNodeMapping[block.type].bind(this)({
+      block,
+      entityMap,
+      previousBlock,
+      previousNode,
+    });
+  }
+
+  return null;
 };

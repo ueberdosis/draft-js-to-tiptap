@@ -1,0 +1,2063 @@
+// Bun Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`draft-list 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "Level 2",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                    {
+                      "content": [
+                        {
+                          "content": [
+                            {
+                              "content": [
+                                {
+                                  "marks": [],
+                                  "text": "Level 3",
+                                  "type": "text",
+                                },
+                              ],
+                              "type": "paragraph",
+                            },
+                            {
+                              "content": [
+                                {
+                                  "content": [
+                                    {
+                                      "content": [
+                                        {
+                                          "marks": [],
+                                          "text": "Level 4",
+                                          "type": "text",
+                                        },
+                                      ],
+                                      "type": "paragraph",
+                                    },
+                                  ],
+                                  "type": "listItem",
+                                },
+                              ],
+                              "type": "bulletList",
+                            },
+                          ],
+                          "type": "listItem",
+                        },
+                      ],
+                      "type": "bulletList",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "Level 2 Again",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                    {
+                      "content": [
+                        {
+                          "content": [
+                            {
+                              "content": [
+                                {
+                                  "marks": [],
+                                  "text": "Level 3 Again",
+                                  "type": "text",
+                                },
+                              ],
+                              "type": "paragraph",
+                            },
+                          ],
+                          "type": "listItem",
+                        },
+                      ],
+                      "type": "bulletList",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1 Again",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "Level 4 Again",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1 Again",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "Level 2 Again",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`draft-axios 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "The merger of generative AI and robotics is likely to ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "href": "https://www.axios.com/2024/05/09/generative-ai-future-fei-li-robots",
+                "target": "_blank",
+              },
+              "type": "link",
+            },
+          ],
+          "text": "take many forms",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": ", but one of the earliest — and cutest — is a chatty, 14-inch-tall kids' companion named Moxie.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "Why it matters:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " The large language models that power chatbots like ChatGPT open the door to a new generation of conversational robots that aren't constrained by a set of predetermined scripts and commands, a prospect that is both tantalizing and terrifying. ",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "The big picture: ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "18 months into life with ChatGPT, more and more companies are building physical robots with generative AI capabilities. ",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "OpenAI itself is reviving the robotics unit it disbanded in 2020, ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "attrs": {
+                        "href": "https://www.forbes.com/sites/kenrickcai/2024/05/30/openai-robotics-team/",
+                        "target": "_blank",
+                      },
+                      "type": "link",
+                    },
+                  ],
+                  "text": "as first reported by Forbes",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ".",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "How it works:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "href": "https://moxierobot.com/products/ai-robot",
+                "target": "_blank",
+              },
+              "type": "link",
+            },
+          ],
+          "text": "Moxie",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " is designed for kids ages 5 to 10, and offers a range of games and activities as well as the ability to have open-ended conversations.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Initially, Moxie takes its child pal through a series of missions designed to help them get to know the robot and its capabilities — and to help Moxie get to know its human. The backstory is that Moxie is fresh from the robot factory and looking to make friends and better understand the human world. ",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Unlike ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "attrs": {
+                        "href": "https://www.axios.com/2021/12/17/smart-toys-market-holiday-data-privacy",
+                        "target": "_blank",
+                      },
+                      "type": "link",
+                    },
+                  ],
+                  "text": "kids' robots of yesteryear",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ", Moxie has a wide repertoire of skills. It can tell jokes, serve up brain teasers, play games like Simon Says or "guess that animal," send kids on a scavenger hunt, pose for selfies or just talk with kids about their interests and emotions. Moxie can tell stories about a topic, listen as a kid tells it a story or watch as a child draws.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Moxie moves its arms, pivots and displays big eyes and a range of facial expressions and inflections on the curved computer screen that serves as its face. Moxie doesn't have wheels or legs, meaning it can fit into a small space (although instructions say to give it a few feet of space from a wall). Moxie can operate either plugged in or running on its rechargeable battery.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Under the hood, Moxie uses speech recognition to understand what a kid is saying, face recognition to help detect emotion and a mix of guided conversation and large language models to carry on a conversation.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "The fine print:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " Moxie's creators say video recording is used to recognize the user's face and detect emotion, and the raw videos never leave the device. Recorded audio goes to the cloud for processing and transcripts of the conversations do get sent back to Embodied, the company behind Moxie. ",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Embodied says it takes steps to de-identify and encrypt the data, and uses most of the data in aggregate to get a sense of how kids are spending their time with Moxie. Still, depending on what a kid shares, a fair bit of personal information could be finding its way back to the company, even if the company doesn't use it.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "A companion phone app shows parents how long their kids spent with Moxie each day and which activities they did, but not a transcript of what was said.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "Zoom in:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " I spent about a week testing Moxie, along with my 11-year-old son Harvey. ",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "The highlights were the many times that it was clear that Moxie not only heard and understood Harvey, but was able to show it knew more about the topic. ",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "When Harvey said his favorite soccer player was "Messi," Moxie knew he meant Argentinian star Lionel Messi. ",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "On Monday, Moxie knew it was Memorial Day, and asked how Harvey spent the day.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "As is the case with his non-robot companions, Harvey's favorite thing to do with Moxie was play games. One of his favorite games was of his own creation — putting a folder on Moxie's head and seeing how long it would take to fall off during their play together.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "The hardest part",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " for Harvey was when Moxie would mispronounce something or repeat itself. Every time that happened, it seemed to break the emotional connection, and it would be a minute or two before Harvey fully re-engaged.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Moxie is also a bit heavy-handed in the early conversations, rigidly sticking to its planned activities. That's helpful to make sure kids know how the robot works, but it can try a kid's patience when they just want to start having fun.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Moxie's creators tell me that adding flexibility and reducing the times that Moxie makes mistakes are both areas they're actively working to improve.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "Zoom out:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " Moxie is just the beginning in what is sure to be a wave of conversational robots. I can easily see similar devices targeted at a range of populations, including housebound seniors and others who are dealing with loneliness.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "There are some big questions, from what values guide the robot to what data is collected. ",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "Between the lines:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " Large language models offer the opportunity for robots to go beyond any sort of script. This is what makes them surprisingly powerful, but also what makes me hesitant as a parent to leave my kid alone with one.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "In my testing, Moxie said all the right things. There was nothing I disagreed with as a parent or even found controversial. Moxie was supportive, encouraging and a good listener.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Moxie is willing and eager to talk about hard feelings and emotions but gently defers discussion of sensitive topics, directing kids to talk to a trusted adult.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "After several days, I found myself less hesitant about leaving Harvey and Moxie alone, an experience I'm told is not uncommon. Some parents become more comfortable over time and others choose to remain within earshot.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "By the numbers:",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " At $799 from both Amazon and Moxie's website, the robot isn't cheap. For now there is no subscription fee, but the company is working on an expanded set of educational content that will be offered as a paid subscription.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "What's next",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": ": Moxie's creators are working on a "pro" version of the robot that could be used in schools, hospitals and other group settings.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`draft-drafttail 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Unstyled ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "Bold",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "italic",
+            },
+          ],
+          "text": "Italic",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "Code",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "underline",
+            },
+          ],
+          "text": "Underline",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "strike",
+            },
+          ],
+          "text": "Strikethrough",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Mark",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Quotation",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Small",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Sample",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Insert",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": "Delete",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "Keyboard",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "superscript",
+            },
+          ],
+          "text": "Superscript",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "subscript",
+            },
+          ],
+          "text": "Subscript",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "href": "www.example.com",
+                "target": undefined,
+              },
+              "type": "link",
+            },
+          ],
+          "text": "link",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "bold",
+            },
+            {
+              "type": "code",
+            },
+          ],
+          "text": "code",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "href": "www.example.com",
+                "target": undefined,
+              },
+              "type": "link",
+            },
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "bold link",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "level": 1,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header one",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 2,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header two",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header three",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 4,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header four",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 5,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header five",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 6,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Header six",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Unordered list item",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "ffgdfg",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Ordered list item",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "fdfdg",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "dfdgd",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "orderedList",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "DFG",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "marks": [],
+              "text": "Blockquote",
+              "type": "text",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "type": "blockquote",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Code",
+          "type": "text",
+        },
+      ],
+      "type": "codeBlock",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Horizontal rule",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "type": "horizontalRule",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": 
+"Soft line
+break"
+,
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Image",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "attrs": {
+            "alt": "",
+            "src": "https://publish-01.obsidian.md/access/64fc2564d66746d9e19f2f34c7e03326/blog/assets/Logo.png",
+          },
+          "type": "image",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "0",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "1",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                    {
+                      "content": [
+                        {
+                          "content": [
+                            {
+                              "content": [
+                                {
+                                  "marks": [],
+                                  "text": "2",
+                                  "type": "text",
+                                },
+                              ],
+                              "type": "paragraph",
+                            },
+                            {
+                              "content": [
+                                {
+                                  "content": [
+                                    {
+                                      "content": [
+                                        {
+                                          "marks": [],
+                                          "text": "3",
+                                          "type": "text",
+                                        },
+                                      ],
+                                      "type": "paragraph",
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "content": [
+                                            {
+                                              "content": [
+                                                {
+                                                  "marks": [],
+                                                  "text": "4",
+                                                  "type": "text",
+                                                },
+                                              ],
+                                              "type": "paragraph",
+                                            },
+                                            {
+                                              "content": [
+                                                {
+                                                  "content": [
+                                                    {
+                                                      "content": [
+                                                        {
+                                                          "marks": [],
+                                                          "text": "5",
+                                                          "type": "text",
+                                                        },
+                                                      ],
+                                                      "type": "paragraph",
+                                                    },
+                                                    {
+                                                      "content": [
+                                                        {
+                                                          "content": [
+                                                            {
+                                                              "content": [
+{
+"marks": [],
+"text": "6",
+"type": "text",
+},
+                                                              ],
+                                                              "type": "paragraph",
+                                                            },
+                                                          ],
+                                                          "type": "listItem",
+                                                        },
+                                                        {
+                                                          "content": [
+                                                            {
+                                                              "content": [
+{
+"marks": [],
+"text": "7",
+"type": "text",
+},
+                                                              ],
+                                                              "type": "paragraph",
+                                                            },
+                                                          ],
+                                                          "type": "listItem",
+                                                        },
+                                                      ],
+                                                      "type": "bulletList",
+                                                    },
+                                                  ],
+                                                  "type": "listItem",
+                                                },
+                                              ],
+                                              "type": "bulletList",
+                                            },
+                                          ],
+                                          "type": "listItem",
+                                        },
+                                      ],
+                                      "type": "bulletList",
+                                    },
+                                  ],
+                                  "type": "listItem",
+                                },
+                              ],
+                              "type": "bulletList",
+                            },
+                          ],
+                          "type": "listItem",
+                        },
+                      ],
+                      "type": "bulletList",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "0",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [],
+                          "text": "1",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                    {
+                      "content": [
+                        {
+                          "content": [
+                            {
+                              "content": [
+                                {
+                                  "marks": [],
+                                  "text": "2",
+                                  "type": "text",
+                                },
+                              ],
+                              "type": "paragraph",
+                            },
+                            {
+                              "content": [
+                                {
+                                  "content": [
+                                    {
+                                      "content": [
+                                        {
+                                          "marks": [],
+                                          "text": "3",
+                                          "type": "text",
+                                        },
+                                      ],
+                                      "type": "paragraph",
+                                    },
+                                    {
+                                      "content": [
+                                        {
+                                          "content": [
+                                            {
+                                              "content": [
+                                                {
+                                                  "marks": [],
+                                                  "text": "4",
+                                                  "type": "text",
+                                                },
+                                              ],
+                                              "type": "paragraph",
+                                            },
+                                            {
+                                              "content": [
+                                                {
+                                                  "content": [
+                                                    {
+                                                      "content": [
+                                                        {
+                                                          "marks": [],
+                                                          "text": "5",
+                                                          "type": "text",
+                                                        },
+                                                      ],
+                                                      "type": "paragraph",
+                                                    },
+                                                    {
+                                                      "content": [
+                                                        {
+                                                          "content": [
+                                                            {
+                                                              "content": [
+{
+"marks": [],
+"text": "6",
+"type": "text",
+},
+                                                              ],
+                                                              "type": "paragraph",
+                                                            },
+                                                          ],
+                                                          "type": "listItem",
+                                                        },
+                                                        {
+                                                          "content": [
+                                                            {
+                                                              "content": [
+{
+"marks": [],
+"text": "7",
+"type": "text",
+},
+                                                              ],
+                                                              "type": "paragraph",
+                                                            },
+                                                          ],
+                                                          "type": "listItem",
+                                                        },
+                                                      ],
+                                                      "type": "orderedList",
+                                                    },
+                                                  ],
+                                                  "type": "listItem",
+                                                },
+                                              ],
+                                              "type": "orderedList",
+                                            },
+                                          ],
+                                          "type": "listItem",
+                                        },
+                                      ],
+                                      "type": "orderedList",
+                                    },
+                                  ],
+                                  "type": "listItem",
+                                },
+                              ],
+                              "type": "orderedList",
+                            },
+                          ],
+                          "type": "listItem",
+                        },
+                      ],
+                      "type": "orderedList",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "orderedList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "End",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
+exports[`draft-complex 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "ABC",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "type": "underline",
+            },
+          ],
+          "text": "123",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "abc",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "kdlfjs",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "You ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "type": "italic",
+            },
+          ],
+          "text": "know me",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "type": "italic",
+            },
+          ],
+          "text": "TEST",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "Sup",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "2",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "123sub",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": 
+"
+"
+,
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "T",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "EXT",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "attrs": {
+                "fontFamily": "Georgia",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "ANOTHER FONT",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": 
+"
+"
+,
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "attrs": {
+                "fontFamily": "Georgia",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "123",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "fontFamily": "Times",
+              },
+              "type": "textStyle",
+            },
+            {
+              "attrs": {
+                "fontFamily": "Georgia",
+              },
+              "type": "textStyle",
+            },
+          ],
+          "text": "345",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+  ],
+  "type": "doc",
+}
+`;
