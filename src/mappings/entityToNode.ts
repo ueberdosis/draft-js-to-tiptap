@@ -21,10 +21,10 @@ export const entityToNodeMapping: Record<
   },
 };
 
-export const mapEntityToNode: MapEntityToNodeFn = function (
-  { key },
-  entityMap
-) {
+export const mapEntityToNode: MapEntityToNodeFn = function ({
+  range: { key },
+  entityMap,
+}) {
   if (entityToNodeMapping[entityMap[key].type]) {
     return entityToNodeMapping[entityMap[key].type](entityMap[key]);
   }

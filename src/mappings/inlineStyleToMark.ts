@@ -13,7 +13,7 @@ export const inlineStyleToMarkMapping: Record<string, MarkType> = {
 };
 
 export const mapInlineStyleToMark: MapInlineStyleToMarkFn = function ({
-  style,
+  range: { style },
 }) {
   if (inlineStyleToMarkMapping[style]) {
     return inlineStyleToMarkMapping[style];

@@ -53,7 +53,9 @@ export type MapBlockToNodeFn = (
  */
 export type MapInlineStyleToMarkFn = (
   this: DraftConverter,
-  inlineStyleRange: RawDraftInlineStyleRange
+  context: {
+    range: RawDraftInlineStyleRange;
+  }
 ) => MarkType | null;
 
 /**
@@ -61,8 +63,10 @@ export type MapInlineStyleToMarkFn = (
  */
 export type MapEntityToMarkFn = (
   this: DraftConverter,
-  range: RawDraftEntityRange,
-  entityMap: RawDraftContentState["entityMap"]
+  context: {
+    range: RawDraftEntityRange;
+    entityMap: RawDraftContentState["entityMap"];
+  }
 ) => MarkType | null;
 
 /**
@@ -70,8 +74,10 @@ export type MapEntityToMarkFn = (
  */
 export type MapEntityToNodeFn = (
   this: DraftConverter,
-  range: RawDraftEntityRange,
-  entityMap: RawDraftContentState["entityMap"]
+  context: {
+    range: RawDraftEntityRange;
+    entityMap: RawDraftContentState["entityMap"];
+  }
 ) => NodeType | null;
 
 export type DraftConverterOptions = {
@@ -111,7 +117,9 @@ export class DraftConverter {
     entityMap: RawDraftContentState["entityMap"]
   ): MarkType | null {
     if (isInlineStyleRange(range)) {
-      const inlineStyle = this.options.mapInlineStyleToMark.bind(this)(range);
+      const inlineStyle = this.options.mapInlineStyleToMark.bind(this)({
+        range,
+      });
 
       if (inlineStyle) {
         return inlineStyle;
@@ -121,7 +129,10 @@ export class DraftConverter {
       return null;
     }
 
-    const entity = this.options.mapEntityToMark.bind(this)(range, entityMap);
+    const entity = this.options.mapEntityToMark.bind(this)({
+      range,
+      entityMap,
+    });
 
     if (entity) {
       return entity;
@@ -151,8 +162,8 @@ export class DraftConverter {
     return null;
   };
 
-  mapEntityToNode: MapEntityToNodeFn = (range, entityMap) => {
-    const node = this.options.mapEntityToNode.bind(this)(range, entityMap);
+  mapEntityToNode: MapEntityToNodeFn = ({ range, entityMap }) => {
+    const node = this.options.mapEntityToNode.bind(this)({ range, entityMap });
     if (node) {
       return node;
     }

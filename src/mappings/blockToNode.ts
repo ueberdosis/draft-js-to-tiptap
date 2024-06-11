@@ -114,7 +114,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     const paragraph = createNode("paragraph");
     const entities = block.entityRanges
       .map((range) => {
-        return this.mapEntityToNode.bind(this)(range, entityMap);
+        return this.mapEntityToNode.bind(this)({ range, entityMap });
       })
       .filter(Boolean);
     if (entities.length === 0) {

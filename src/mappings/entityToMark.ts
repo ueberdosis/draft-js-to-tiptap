@@ -18,10 +18,10 @@ export const entityToMarkMapping: Record<
   },
 };
 
-export const mapEntityToMark: MapEntityToMarkFn = function (
-  { key },
-  entityMap
-) {
+export const mapEntityToMark: MapEntityToMarkFn = function ({
+  range: { key },
+  entityMap,
+}) {
   if (entityToMarkMapping[entityMap[key].type]) {
     return entityToMarkMapping[entityMap[key].type](entityMap[key]);
   }
