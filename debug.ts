@@ -1,6 +1,13 @@
-import { DraftConverter } from "./src/index";
+import { DraftConverter, type NodeType } from "./src/index";
 import draft from "./test/draft-complex.json";
 
+// You can add your own node types like this:
+declare module "./src/index" {
+  interface NodeMapping {
+    // These will now be available to `createNode`, `addChild`, `addMark` functions
+    test: NodeType<"test", { test: string }>;
+  }
+}
 const converter = new DraftConverter();
 
 const output = converter.convert(draft as any);

@@ -1,3 +1,4 @@
+import type { NodeMapping } from "./index";
 import type { RawDraftEntityRange, RawDraftInlineStyleRange } from "draft-js";
 
 export type MarkType<
@@ -31,42 +32,14 @@ export type TextType<TMarkType extends MarkType = MarkType> = {
   marks: TMarkType[];
 };
 
-export type NodeMapping = {
-  blockquote: NodeType<"blockquote">;
-  bulletList: NodeType<
-    "bulletList",
-    Record<string, any>,
-    MarkType,
-    NodeMapping["listItem"][]
-  >;
-  codeBlock: NodeType<"codeBlock">;
-  hardBreak: NodeType<"hardBreak">;
-  heading: NodeType<"heading", { level: number }>;
-  horizontalRule: NodeType<"horizontalRule">;
-  image: NodeType<"image", { src: string }>;
-  listItem: NodeType<
-    "listItem",
-    Record<string, any>,
-    MarkType,
-    (NodeType<"bulletList"> | NodeType<"orderedList"> | NodeType<"paragraph">)[]
-  >;
-  orderedList: NodeType<
-    "orderedList",
-    Record<string, any>,
-    MarkType,
-    NodeMapping["listItem"][]
-  >;
-  paragraph: NodeType<"paragraph">;
-};
-
 /**
  * Add a child node to a parent node.
  * @returns The parent node with the child node added.
  */
-export function addChild<T extends NodeType>(
-  node: T,
-  child: T["content"][number] | null
-): T {
+export function addChild<TNodeType extends keyof NodeMapping>(
+  node: NodeMapping[TNodeType],
+  child: NodeMapping[TNodeType]["content"][number] | null
+): NodeMapping[TNodeType] {
   if (!node && !child) {
     throw new Error("Cannot add a null child to a null parent.");
   }
@@ -88,7 +61,10 @@ export function addChild<T extends NodeType>(
  * Add a mark to a node.
  * @returns The node with the mark added.
  */
-export function addMark<T extends NodeType>(node: T, mark: MarkType | null): T {
+export function addMark<TNodeType extends keyof NodeMapping>(
+  node: NodeMapping[TNodeType],
+  mark: NonNullable<NodeMapping[TNodeType]["marks"]>[number] | null
+): NodeMapping[TNodeType] {
   if (!node && !mark) {
     throw new Error("Cannot add a null mark to a null node.");
   }
@@ -106,12 +82,11 @@ export function addMark<T extends NodeType>(node: T, mark: MarkType | null): T {
   return node;
 }
 
-// export function createNode<T extends string>(type: T): NodeType<T>;
-export function createNode<T extends keyof NodeMapping>(
-  type: T,
-  options?: Partial<Omit<NodeMapping[T], "type">>
-): NodeMapping[T] {
-  return { type, ...options } as NodeMapping[T];
+export function createNode<TNodeType extends keyof NodeMapping>(
+  type: TNodeType,
+  options?: Partial<Omit<NodeMapping[TNodeType], "type">>
+): NodeMapping[TNodeType] {
+  return { type, ...options } as NodeMapping[TNodeType];
 }
 
 export function createDocument(): DocumentType {
