@@ -1,0 +1,32 @@
+{
+  "entityMap": {},
+  "blocks": [
+    {
+      "key": "14ddo",
+      "text": "Level 1",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "59gth",
+      "text": "Level 1 bullet 2",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    },
+    {
+      "key": "59bth",
+      "text": "Level 1 bullet 3",
+      "type": "unordered-list-item",
+      "depth": 0,
+      "inlineStyleRanges": [],
+      "entityRanges": [],
+      "data": {}
+    }
+  ]
+}

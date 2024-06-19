@@ -1,5 +1,63 @@
 // Bun Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`draft-list-simple 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1 bullet 2",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Level 1 bullet 3",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+  ],
+  "type": "doc",
+}
+`;
+
 exports[`draft-list 1`] = `
 {
   "content": [

@@ -1,9 +1,15 @@
 import { expect, test } from "bun:test";
 import { DraftConverter } from "../src/index";
+import draftListSimple from "./draft-list-simple.json";
 import draftList from "./draft-list.json";
 import draftAxios from "./draft-axios.json";
 import draftTail from "./draft-drafttail.json";
 import draftComplex from "./draft-complex.json";
+
+test("draft-list-simple", () => {
+  const converter = new DraftConverter();
+  expect(converter.convert(draftListSimple)).toMatchSnapshot();
+});
 
 test("draft-list", () => {
   const converter = new DraftConverter();
