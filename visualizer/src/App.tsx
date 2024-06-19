@@ -5,12 +5,15 @@ import Link from "@tiptap/extension-link";
 import SubScript from "@tiptap/extension-subscript";
 import SuperScript from "@tiptap/extension-superscript";
 import Underline from "@tiptap/extension-underline";
+import type { JSONContent } from "@tiptap/core";
 import { EditorContent, useEditor } from "@tiptap/react";
+import TextAlign from "@tiptap/extension-text-align";
+import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 
 export default function Visualizer() {
-  const [json, setJson] = useState(null);
+  const [json, setJson] = useState<JSONContent | null>(null);
   const [value, setValue] = useState("");
   const editor = useEditor({
     content: `
@@ -18,7 +21,16 @@ export default function Visualizer() {
           Wow, this editor instance exports its content as JSON.
         </p>
       `,
-    extensions: [StarterKit, SuperScript, SubScript, Link, Image, Underline],
+    extensions: [
+      StarterKit,
+      SuperScript,
+      SubScript,
+      Link,
+      Image,
+      Underline,
+      TextAlign,
+      TextStyle,
+    ],
   });
 
   useEffect(() => {
@@ -33,34 +45,6 @@ export default function Visualizer() {
     editor.on("update", () => {
       setJson(editor.getJSON());
     });
-  }, [editor]);
-
-  const setContent = useCallback(() => {
-    // You can pass a JSON document to the editor.
-    editor.commands.setContent(
-      {
-        type: "doc",
-        content: [
-          {
-            type: "paragraph",
-            content: [
-              {
-                type: "text",
-                text: "It’s 19871. You can’t turn on a radio, or go to a mall without hearing Olivia Newton-John’s hit song, Physical.",
-              },
-            ],
-          },
-        ],
-      },
-      true
-    );
-
-    // It’s likely that you’d like to focus the Editor after most commands.
-    editor.commands.focus();
-  }, [editor]);
-
-  const clearContent = useCallback(() => {
-    editor.chain().clearContent(true).focus().run();
   }, [editor]);
 
   if (!editor) {

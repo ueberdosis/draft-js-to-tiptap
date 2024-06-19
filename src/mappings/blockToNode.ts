@@ -1,6 +1,5 @@
 import { addChild, createNode, createText, isListNode } from "../utils";
 import type { MapBlockToNodeFn } from "../draftConverter";
-import type { RawDraftContentBlock } from "draft-js";
 
 /**
  * Lists are represented as a tree structure in ProseMirror.
@@ -8,44 +7,23 @@ import type { RawDraftContentBlock } from "draft-js";
  * So, we need to build the tree structure for the list.
  */
 const mapToListNode: MapBlockToNodeFn = function ({
-  get,
-  prev,
-  next,
   entityMap,
-  addToDoc,
+  getCurrentBlock,
+  peek,
+  next,
 }) {
   // Start a new list
-  const startListNode =
-    get().type === "unordered-list-item"
-      ? createNode("bulletList")
-      : createNode("orderedList");
+  const outerListNode =
+    getCurrentBlock().type === "unordered-list-item"
+      ? this.createNode("bulletList")
+      : this.createNode("orderedList");
 
-  const createListItem = () => {
-    // Create a paragraph with all the text
-    const paragraph = createNode("paragraph");
+  while (true) {
+    let listNode = outerListNode;
 
-    // Then, we add the text to it's paragraph
-    this.splitTextByEntityRangesAndInlineStyleRanges({
-      block: get(),
-      entityMap,
-    }).forEach((node) => {
-      addChild(paragraph, node);
-    });
-
-    const listItem = createNode("listItem");
-    // And add the paragraph to the list item
-    addChild(listItem, paragraph);
-
-    return listItem;
-  };
-
-  // TODO need to account switching between ordered and unordered lists
-  do {
-    let listNode = startListNode;
-
-    const block = get();
+    const currentBlock = getCurrentBlock();
     let depth = 0;
-    while (depth < block.depth) {
+    while (depth < currentBlock.depth) {
       if (!listNode.content?.length) {
         listNode.content = [];
       }
@@ -53,7 +31,7 @@ const mapToListNode: MapBlockToNodeFn = function ({
       let mostRecentListItem = listNode.content[listNode.content.length - 1];
       if (!mostRecentListItem) {
         mostRecentListItem = createNode("listItem");
-        addChild(listNode, mostRecentListItem);
+        this.addChild(listNode, mostRecentListItem);
       }
 
       let nextMostRecentList =
@@ -67,11 +45,11 @@ const mapToListNode: MapBlockToNodeFn = function ({
       } else {
         // We didn't find a list, in the last position, create a new one
         nextMostRecentList =
-          block.type === "unordered-list-item"
+          currentBlock.type === "unordered-list-item"
             ? createNode("bulletList")
             : createNode("orderedList");
 
-        addChild(mostRecentListItem, nextMostRecentList);
+        this.addChild(mostRecentListItem, nextMostRecentList);
 
         listNode = nextMostRecentList;
         // Tiptap doesn't support nesting lists, so we break here
@@ -79,29 +57,42 @@ const mapToListNode: MapBlockToNodeFn = function ({
       }
     }
 
-    // We found the correct list, add the list item
-    addChild(listNode, createListItem());
+    // We found the correct list, add the new list item
+    addChild(
+      listNode,
+      createNode("listItem", {
+        content: [
+          createNode("paragraph", {
+            content: this.splitTextByEntityRangesAndInlineStyleRanges({
+              block: getCurrentBlock(),
+              entityMap,
+            }),
+          }),
+        ],
+      })
+    );
 
+    const nextBlock = peek();
+    if (
+      !(
+        (nextBlock && nextBlock.type === "unordered-list-item") ||
+        (nextBlock && nextBlock.type === "ordered-list-item")
+      )
+    ) {
+      break;
+    }
+
+    if (nextBlock && nextBlock.type !== currentBlock.type) {
+      // We are switching between ordered and unordered lists
+      break;
+    }
     next();
-  } while (
-    get()?.type === "unordered-list-item" ||
-    get()?.type === "ordered-list-item"
-  );
+  }
 
-  // Could also peek ahead but this is simpler
-  // Go back to the last block since we went too far
-  prev();
-
-  addToDoc(startListNode);
+  return outerListNode;
 };
 
-const mapToHeadingNode: MapBlockToNodeFn = function ({
-  get,
-  addToDoc,
-  entityMap,
-}) {
-  const block = get();
-
+const mapToHeadingNode: MapBlockToNodeFn = function ({ block, entityMap }) {
   const headingLevel = {
     "header-one": 1,
     "header-two": 2,
@@ -110,28 +101,22 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({
     "header-five": 5,
     "header-six": 6,
   }[block.type];
-  const heading = createNode("heading", {
+
+  return createNode("heading", {
     attrs: { level: headingLevel || 1 },
+    content: this.splitTextByEntityRangesAndInlineStyleRanges({
+      block,
+      entityMap,
+    }),
   });
-
-  this.splitTextByEntityRangesAndInlineStyleRanges({
-    block,
-    entityMap,
-  }).forEach((node) => {
-    addChild(heading, node);
-  });
-
-  addToDoc(heading);
 };
 
 export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
-  atomic: function ({ get, addToDoc, entityMap }) {
-    const block = get();
+  atomic({ block, entityMap }) {
     if (block.entityRanges.length === 0) {
       if (block.inlineStyleRanges.length === 0) {
         // Plain text, fast path
-        addToDoc(createText(block.text));
-        return;
+        return createText(block.text);
       }
     }
     // TODO atomic blocks use entities, to generate nodes
@@ -146,52 +131,42 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     if (entities.length === 0) {
       return false;
     }
-    entities.forEach((node) => {
-      addChild(paragraph, node);
-    });
 
-    addToDoc(paragraph);
+    return addChild(paragraph, entities);
   },
-  "code-block": function ({ get, addToDoc }) {
-    const block = get();
-    const codeBlock = createNode("codeBlock");
-    const text = createText(block.text);
-    addChild(codeBlock, text);
-    addToDoc(codeBlock);
-  },
-  blockquote: function ({ get, entityMap, addToDoc }) {
-    const block = get();
-    const blockquote = createNode("blockquote");
-    const paragraph = createNode("paragraph");
-
-    this.splitTextByEntityRangesAndInlineStyleRanges({
-      block,
-      entityMap,
-    }).forEach((node) => {
-      addChild(paragraph, node);
+  "code-block"({ block }) {
+    return createNode("codeBlock", {
+      content: [createText(block.text)],
     });
-    addChild(blockquote, paragraph);
-    addToDoc(blockquote);
   },
-  unstyled: function ({ get, entityMap, addToDoc }) {
-    const block = get();
+  blockquote({ block, entityMap }) {
+    return createNode("blockquote", {
+      content: [
+        createNode("paragraph", {
+          content: this.splitTextByEntityRangesAndInlineStyleRanges({
+            block,
+            entityMap,
+          }),
+        }),
+      ],
+    });
+  },
+  unstyled({ block, entityMap }) {
     const paragraph = createNode("paragraph");
     if (block.inlineStyleRanges.length === 0) {
       if (block.entityRanges.length === 0) {
         // Plain text, fast path
-        addChild(paragraph, createText(block.text));
-        addToDoc(paragraph);
-        return;
+        return addChild(paragraph, createText(block.text));
       }
     }
 
-    this.splitTextByEntityRangesAndInlineStyleRanges({
-      block,
-      entityMap,
-    }).forEach((node) => {
-      addChild(paragraph, node);
-    });
-    addToDoc(paragraph);
+    return addChild(
+      paragraph,
+      this.splitTextByEntityRangesAndInlineStyleRanges({
+        block,
+        entityMap,
+      })
+    );
   },
   "unordered-list-item": mapToListNode,
   "ordered-list-item": mapToListNode,
@@ -204,7 +179,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
 };
 
 export const mapBlockToNode: MapBlockToNodeFn = function (options) {
-  const block = options.get();
+  const block = options.getCurrentBlock();
   if (blockToNodeMapping[block.type]) {
     return blockToNodeMapping[block.type].bind(this)(options);
   }

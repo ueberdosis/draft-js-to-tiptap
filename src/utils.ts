@@ -38,7 +38,10 @@ export type TextType<TMarkType extends MarkType = MarkType> = {
  */
 export function addChild<TNodeType extends keyof NodeMapping>(
   node: NodeMapping[TNodeType],
-  child: NodeMapping[TNodeType]["content"][number] | null
+  child:
+    | NodeMapping[TNodeType]["content"][number][]
+    | NodeMapping[TNodeType]["content"][number]
+    | null
 ): NodeMapping[TNodeType] {
   if (!node && !child) {
     throw new Error("Cannot add a null child to a null parent.");
@@ -52,7 +55,11 @@ export function addChild<TNodeType extends keyof NodeMapping>(
     node.content = [];
   }
 
-  node.content.push(child);
+  if (Array.isArray(child)) {
+    node.content.push.apply(node.content, child);
+  } else {
+    node.content.push(child);
+  }
 
   return node;
 }

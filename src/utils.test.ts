@@ -43,6 +43,20 @@ describe("utils.addChild", () => {
       content: [{ type: "text", text: "Hello", marks: [] }],
     });
   });
+
+  test("should add multiple children to a node with content", () => {
+    const node = utils.createNode("paragraph", { content: [] });
+    const child = utils.createText("Hello");
+    const anotherChild = utils.createText("World");
+    utils.addChild(node, [child, anotherChild]);
+    expect(node).toEqual({
+      type: "paragraph",
+      content: [
+        { type: "text", text: "Hello", marks: [] },
+        { type: "text", text: "World", marks: [] },
+      ],
+    });
+  });
 });
 
 describe("utils.createDocument", () => {
