@@ -1,13 +1,16 @@
 import type { RawDraftEntity } from "draft-js";
 
 import { type MarkType } from "../utils";
-import type { MapEntityToMarkFn } from "../draftConverter";
+import type { DraftConverter, MapEntityToMarkFn } from "../draftConverter";
 
 export const entityToMarkMapping: Record<
   string,
-  (entity: RawDraftEntity) => MarkType | null
+  (context: {
+    entity: RawDraftEntity;
+    converter: DraftConverter;
+  }) => MarkType | null
 > = {
-  LINK: (entity) => {
+  LINK: ({ entity }) => {
     return {
       type: "link",
       attrs: {
@@ -21,9 +24,13 @@ export const entityToMarkMapping: Record<
 export const mapEntityToMark: MapEntityToMarkFn = function ({
   range: { key },
   entityMap,
+  converter,
 }) {
   if (entityToMarkMapping[entityMap[key].type]) {
-    return entityToMarkMapping[entityMap[key].type](entityMap[key]);
+    return entityToMarkMapping[entityMap[key].type]({
+      entity: entityMap[key],
+      converter,
+    });
   }
 
   return null;

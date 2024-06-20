@@ -11,12 +11,13 @@ const mapToListNode: MapBlockToNodeFn = function ({
   getCurrentBlock,
   peek,
   next,
+  converter,
 }) {
   // Start a new list
   const outerListNode =
     getCurrentBlock().type === "unordered-list-item"
-      ? this.createNode("bulletList")
-      : this.createNode("orderedList");
+      ? createNode("bulletList")
+      : createNode("orderedList");
 
   while (true) {
     let listNode = outerListNode;
@@ -31,7 +32,7 @@ const mapToListNode: MapBlockToNodeFn = function ({
       let mostRecentListItem = listNode.content[listNode.content.length - 1];
       if (!mostRecentListItem) {
         mostRecentListItem = createNode("listItem");
-        this.addChild(listNode, mostRecentListItem);
+        addChild(listNode, mostRecentListItem);
       }
 
       let nextMostRecentList =
@@ -49,7 +50,7 @@ const mapToListNode: MapBlockToNodeFn = function ({
             ? createNode("bulletList")
             : createNode("orderedList");
 
-        this.addChild(mostRecentListItem, nextMostRecentList);
+        addChild(mostRecentListItem, nextMostRecentList);
 
         listNode = nextMostRecentList;
         // Tiptap doesn't support nesting lists, so we break here
@@ -63,7 +64,7 @@ const mapToListNode: MapBlockToNodeFn = function ({
       createNode("listItem", {
         content: [
           createNode("paragraph", {
-            content: this.splitTextByEntityRangesAndInlineStyleRanges({
+            content: converter.splitTextByEntityRangesAndInlineStyleRanges({
               block: getCurrentBlock(),
               entityMap,
             }),
@@ -92,7 +93,11 @@ const mapToListNode: MapBlockToNodeFn = function ({
   return outerListNode;
 };
 
-const mapToHeadingNode: MapBlockToNodeFn = function ({ block, entityMap }) {
+const mapToHeadingNode: MapBlockToNodeFn = function ({
+  block,
+  entityMap,
+  converter,
+}) {
   const headingLevel = {
     "header-one": 1,
     "header-two": 2,
@@ -104,7 +109,7 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({ block, entityMap }) {
 
   return createNode("heading", {
     attrs: { level: headingLevel || 1 },
-    content: this.splitTextByEntityRangesAndInlineStyleRanges({
+    content: converter.splitTextByEntityRangesAndInlineStyleRanges({
       block,
       entityMap,
     }),
@@ -112,7 +117,7 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({ block, entityMap }) {
 };
 
 export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
-  atomic({ block, entityMap }) {
+  atomic({ block, entityMap, converter }) {
     if (block.entityRanges.length === 0) {
       if (block.inlineStyleRanges.length === 0) {
         // Plain text, fast path
@@ -124,7 +129,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     const paragraph = createNode("paragraph");
     const entities = block.entityRanges
       .map((range) => {
-        return this.mapEntityToNode.bind(this)({ range, entityMap });
+        return converter.mapEntityToNode({ range, entityMap, converter });
       })
       .filter(Boolean);
 
@@ -139,11 +144,11 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
       content: [createText(block.text)],
     });
   },
-  blockquote({ block, entityMap }) {
+  blockquote({ block, entityMap, converter }) {
     return createNode("blockquote", {
       content: [
         createNode("paragraph", {
-          content: this.splitTextByEntityRangesAndInlineStyleRanges({
+          content: converter.splitTextByEntityRangesAndInlineStyleRanges({
             block,
             entityMap,
           }),
@@ -151,7 +156,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
       ],
     });
   },
-  unstyled({ block, entityMap }) {
+  unstyled({ block, entityMap, converter }) {
     const paragraph = createNode("paragraph");
     if (block.inlineStyleRanges.length === 0) {
       if (block.entityRanges.length === 0) {
@@ -162,7 +167,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
 
     return addChild(
       paragraph,
-      this.splitTextByEntityRangesAndInlineStyleRanges({
+      converter.splitTextByEntityRangesAndInlineStyleRanges({
         block,
         entityMap,
       })
@@ -181,7 +186,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
 export const mapBlockToNode: MapBlockToNodeFn = function (options) {
   const block = options.getCurrentBlock();
   if (blockToNodeMapping[block.type]) {
-    return blockToNodeMapping[block.type].bind(this)(options);
+    return blockToNodeMapping[block.type](options);
   }
 
   return false;

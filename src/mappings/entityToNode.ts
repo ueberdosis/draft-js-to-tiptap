@@ -1,16 +1,19 @@
 import type { RawDraftEntity } from "draft-js";
 
 import { type NodeType, createNode } from "../utils";
-import type { MapEntityToNodeFn } from "../draftConverter";
+import type { DraftConverter, MapEntityToNodeFn } from "../draftConverter";
 
 export const entityToNodeMapping: Record<
   string,
-  (entity: RawDraftEntity) => NodeType | null
+  (context: {
+    entity: RawDraftEntity;
+    converter: DraftConverter;
+  }) => NodeType | null
 > = {
   HORIZONTAL_RULE: () => {
     return createNode("horizontalRule");
   },
-  IMAGE: (entity) => {
+  IMAGE: ({ entity }) => {
     return {
       type: "image",
       attrs: {
@@ -24,9 +27,13 @@ export const entityToNodeMapping: Record<
 export const mapEntityToNode: MapEntityToNodeFn = function ({
   range: { key },
   entityMap,
+  converter,
 }) {
   if (entityToNodeMapping[entityMap[key].type]) {
-    return entityToNodeMapping[entityMap[key].type](entityMap[key]);
+    return entityToNodeMapping[entityMap[key].type]({
+      entity: entityMap[key],
+      converter,
+    });
   }
 
   return null;

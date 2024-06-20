@@ -27,6 +27,10 @@ import {
 
 type BlockMapContext = {
   /**
+   * The draft converter instance.
+   */
+  converter: DraftConverter;
+  /**
    * The entity map of the Draft.js content.
    */
   entityMap: RawDraftContentState["entityMap"];
@@ -72,41 +76,34 @@ type BlockMapContext = {
  * @returns false if the block was not mapped, undefined if it was mapped
  */
 export type MapBlockToNodeFn = (
-  this: DraftConverter,
   context: BlockMapContext
 ) => NodeType | boolean | void | undefined;
 
 /**
  * A function that maps a Draft.js inline style to a ProseMirror mark.
  */
-export type MapInlineStyleToMarkFn = (
-  this: DraftConverter,
-  context: {
-    range: RawDraftInlineStyleRange;
-  }
-) => MarkType | null;
+export type MapInlineStyleToMarkFn = (context: {
+  range: RawDraftInlineStyleRange;
+  converter: DraftConverter;
+}) => MarkType | null;
 
 /**
  * A function that maps a Draft.js entity to a ProseMirror mark.
  */
-export type MapEntityToMarkFn = (
-  this: DraftConverter,
-  context: {
-    range: RawDraftEntityRange;
-    entityMap: RawDraftContentState["entityMap"];
-  }
-) => MarkType | null;
+export type MapEntityToMarkFn = (context: {
+  range: RawDraftEntityRange;
+  entityMap: RawDraftContentState["entityMap"];
+  converter: DraftConverter;
+}) => MarkType | null;
 
 /**
  * A function that maps a Draft.js entity to a ProseMirror node.
  */
-export type MapEntityToNodeFn = (
-  this: DraftConverter,
-  context: {
-    range: RawDraftEntityRange;
-    entityMap: RawDraftContentState["entityMap"];
-  }
-) => NodeType | null;
+export type MapEntityToNodeFn = (context: {
+  converter: DraftConverter;
+  range: RawDraftEntityRange;
+  entityMap: RawDraftContentState["entityMap"];
+}) => NodeType | null;
 
 export type DraftConverterOptions = {
   mapBlockToNode: MapBlockToNodeFn;
@@ -149,8 +146,9 @@ export class DraftConverter {
   ): MarkType | null {
     if (isInlineStyleRange(range)) {
       try {
-        const inlineStyle = this.options.mapInlineStyleToMark.bind(this)({
+        const inlineStyle = this.options.mapInlineStyleToMark({
           range,
+          converter: this,
         });
 
         if (inlineStyle) {
@@ -165,9 +163,10 @@ export class DraftConverter {
     }
 
     try {
-      const entity = this.options.mapEntityToMark.bind(this)({
+      const entity = this.options.mapEntityToMark({
         range,
         entityMap,
+        converter: this,
       });
 
       if (entity) {
@@ -198,9 +197,10 @@ export class DraftConverter {
 
   mapEntityToNode: MapEntityToNodeFn = ({ range, entityMap }) => {
     try {
-      const node = this.options.mapEntityToNode.bind(this)({
+      const node = this.options.mapEntityToNode({
         range,
         entityMap,
+        converter: this,
       });
       if (node) {
         return node;
@@ -309,7 +309,8 @@ export class DraftConverter {
       getCurrentBlock: () => draft.blocks[i],
       next: () => draft.blocks[i++] || null,
       prev: () => draft.blocks[i--] || null,
-    };
+      converter: this,
+    } satisfies BlockMapContext;
 
     for (; i < draft.blocks.length; i++) {
       const mapped = this.mapBlockToNode.call(this, ctx);
