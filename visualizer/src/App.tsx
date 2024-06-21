@@ -8,6 +8,10 @@ import Underline from "@tiptap/extension-underline";
 import type { JSONContent } from "@tiptap/core";
 import { EditorContent, useEditor } from "@tiptap/react";
 import TextAlign from "@tiptap/extension-text-align";
+import Table from "@tiptap/extension-table";
+import TableHeader from "@tiptap/extension-table-header";
+import TableRow from "@tiptap/extension-table-row";
+import TableCell from "@tiptap/extension-table-cell";
 import TextStyle from "@tiptap/extension-text-style";
 import StarterKit from "@tiptap/starter-kit";
 import { useEffect, useState } from "react";
@@ -30,6 +34,10 @@ export default function Visualizer() {
       Underline,
       TextAlign,
       TextStyle,
+      Table,
+      TableHeader,
+      TableRow,
+      TableCell,
     ],
   });
 

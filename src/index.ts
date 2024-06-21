@@ -35,4 +35,22 @@ export interface NodeMapping {
     NodeMapping["listItem"][]
   >;
   paragraph: NodeType<"paragraph">;
+  tableCell: NodeType<
+    "tableCell",
+    Record<string, any>,
+    MarkType,
+    NodeType<"paragraph">[]
+  >;
+  tableRow: NodeType<
+    "tableRow",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["tableCell"][]
+  >;
+  table: NodeType<
+    "table",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["tableRow"][]
+  >;
 }

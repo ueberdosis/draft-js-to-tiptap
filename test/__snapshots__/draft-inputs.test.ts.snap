@@ -1657,3 +1657,131 @@ break"
   "type": "doc",
 }
 `;
+
+exports[`draft-table-drafttail 1`] = `
+{
+  "content": [
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "marks": [],
+                      "text": "Hello, ",
+                      "type": "text",
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "bold",
+                        },
+                      ],
+                      "text": "World",
+                      "type": "text",
+                    },
+                    {
+                      "marks": [],
+                      "text": "!",
+                      "type": "text",
+                    },
+                  ],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+            {
+              "content": [
+                {
+                  "content": [],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+          ],
+          "type": "tableRow",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "marks": [],
+                      "text": "This is an example of a table",
+                      "type": "text",
+                    },
+                  ],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+          ],
+          "type": "tableRow",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "content": [],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "marks": [],
+                      "text": "It ",
+                      "type": "text",
+                    },
+                    {
+                      "marks": [
+                        {
+                          "type": "bold",
+                        },
+                      ],
+                      "text": "kind of",
+                      "type": "text",
+                    },
+                    {
+                      "marks": [],
+                      "text": " works",
+                      "type": "text",
+                    },
+                  ],
+                  "type": "paragraph",
+                },
+              ],
+              "type": "tableCell",
+            },
+          ],
+          "type": "tableRow",
+        },
+      ],
+      "type": "table",
+    },
+  ],
+  "type": "doc",
+}
+`;

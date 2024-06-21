@@ -116,6 +116,46 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({
   });
 };
 
+const mapToTableNode: MapBlockToNodeFn = function ({
+  getCurrentBlock,
+  entityMap,
+  converter,
+  peek,
+  next,
+}) {
+  const table = createNode("table");
+  let row = createNode("tableRow");
+  let previousCellBlock = getCurrentBlock();
+  do {
+    if (previousCellBlock.depth + 1 !== getCurrentBlock().depth) {
+      // Create new table row (since in drafttail, the depth increments by 100 when on a new row)
+      row = createNode("tableRow");
+      addChild(table, row);
+    }
+    // Add the new table cell
+    addChild(
+      row,
+      createNode("tableCell", {
+        content: [
+          createNode("paragraph", {
+            content: converter.splitTextByEntityRangesAndInlineStyleRanges({
+              block: getCurrentBlock(),
+              entityMap,
+            }),
+          }),
+        ],
+      })
+    );
+
+    if (peek()?.type !== "table-cell") {
+      break;
+    }
+    previousCellBlock = next()!;
+  } while (true);
+
+  return table;
+};
+
 export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
   atomic({ block, entityMap, converter }) {
     if (block.entityRanges.length === 0) {
@@ -157,6 +197,9 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     });
   },
   unstyled({ block, entityMap, converter }) {
+    if (!block.text) {
+      return false;
+    }
     const paragraph = createNode("paragraph");
     if (block.inlineStyleRanges.length === 0) {
       if (block.entityRanges.length === 0) {
@@ -181,6 +224,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
   "header-four": mapToHeadingNode,
   "header-five": mapToHeadingNode,
   "header-six": mapToHeadingNode,
+  "table-cell": mapToTableNode,
 };
 
 export const mapBlockToNode: MapBlockToNodeFn = function (options) {
