@@ -1,7 +1,8 @@
 import type { RawDraftEntity } from "draft-js";
 
 import { type MarkType } from "../utils";
-import type { DraftConverter, MapEntityToMarkFn } from "../draftConverter";
+import type { DraftConverter } from "../draftConverter";
+import type { MapEntityToMarkFn } from "../types";
 
 export const entityToMarkMapping: Record<
   string,

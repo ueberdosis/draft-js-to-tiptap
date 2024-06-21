@@ -534,3 +534,22 @@ kbd {
     cursor: col-resize;
   }
 }
+
+
+.export {
+  min-width: 50%;
+  background-color: var(--gray-2);
+  padding: 1.5rem;
+  overflow: auto;
+  width: 100%;
+}
+
+.json-input {
+  width: 100%;
+  overflow: auto;
+  font-family: 'Courier New', Courier, monospace;
+}
+
+.unmatched, .preview-conversion {
+  width: 49%;
+}

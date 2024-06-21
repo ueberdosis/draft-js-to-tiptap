@@ -1,6 +1,11 @@
 import type { NodeMapping } from "./index";
-import type { RawDraftEntityRange, RawDraftInlineStyleRange } from "draft-js";
+import type {
+  RawDraftContentState,
+  RawDraftEntityRange,
+  RawDraftInlineStyleRange,
+} from "draft-js";
 
+export type DraftJSContent = RawDraftContentState;
 export type MarkType<
   Type extends string = string,
   Attributes extends Record<string, any> = Record<string, any>
@@ -96,6 +101,11 @@ export function addMark<TNodeType extends keyof NodeMapping>(
   return node;
 }
 
+/**
+ * Create a ProseMirror node.
+ * @param type The type of the node.
+ * @param options Additional options for the node.
+ */
 export function createNode<TNodeType extends keyof NodeMapping>(
   type: TNodeType,
   options?: Partial<Omit<NodeMapping[TNodeType], "type">>
@@ -103,22 +113,98 @@ export function createNode<TNodeType extends keyof NodeMapping>(
   return { type, ...options } as NodeMapping[TNodeType];
 }
 
+/**
+ * Create a ProseMirror document.
+ * @returns The document node.
+ */
 export function createDocument(): DocumentType {
   return { type: "doc", content: [] };
 }
 
+/**
+ * Create a ProseMirror text node.
+ * @param text The text content of the node.
+ * @param marks The marks to apply to the text node.
+ * @returns The text node.
+ */
 export function createText(text: string, marks?: MarkType[]): TextType {
   return { type: "text", text, marks: marks || [] };
 }
 
+/**
+ * Check if a range is an inline style range.
+ * @param range The range to check.
+ * @returns `true` if the range is an inline style range, `false` otherwise.
+ */
 export function isInlineStyleRange(
   range: RawDraftInlineStyleRange | RawDraftEntityRange
 ): range is RawDraftInlineStyleRange {
   return "style" in range;
 }
 
+/**
+ * Check if a range is an entity range.
+ * @param range The range to check.
+ * @returns `true` if the range is an entity range, `false` otherwise.
+ */
 export function isEntityRange(
   range: RawDraftInlineStyleRange | RawDraftEntityRange
 ): range is RawDraftEntityRange {
   return "key" in range;
+}
+
+/**
+ * Check if a node is a document node.
+ * @param node The node to check.
+ * @returns `true` if the node is a document node, `false` otherwise.
+ */
+export function isDocument(node: unknown): node is DocumentType {
+  return (
+    typeof node === "object" &&
+    node !== null &&
+    "type" in node &&
+    node.type === "doc"
+  );
+}
+
+/**
+ * Check if a node is a text node.
+ * @param node The node to check.
+ * @returns `true` if the node is a text node, `false` otherwise.
+ */
+export function isDraftJSContent(node: unknown): node is DraftJSContent {
+  return (
+    typeof node === "object" &&
+    node !== null &&
+    "blocks" in node &&
+    "entityMap" in node
+  );
+}
+
+/**
+ * Check if a node is a text node.
+ * @param node The node to check.
+ * @returns `true` if the node is a text node, `false` otherwise.
+ */
+export function isText(node: unknown): node is TextType {
+  return (
+    typeof node === "object" &&
+    node !== null &&
+    "type" in node &&
+    node.type === "text"
+  );
+}
+
+/**
+ * Check if a node is a node.
+ * @param node The node to check.
+ * @returns `true` if the node is a node, `false` otherwise.
+ */
+export function isNode(node: unknown): node is NodeType {
+  return (
+    typeof node === "object" &&
+    node !== null &&
+    "type" in node &&
+    node.type !== "text"
+  );
 }

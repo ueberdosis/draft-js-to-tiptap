@@ -6,104 +6,30 @@ import type {
   RawDraftEntity,
 } from "draft-js";
 
+import type {
+  MapBlockToNodeFn,
+  MapEntityToMarkFn,
+  MapEntityToNodeFn,
+  MapInlineStyleToMarkFn,
+} from "./types";
 import {
-  type MarkType,
-  type NodeType,
-  type TextType,
   addChild,
   addMark,
   createDocument,
+  createNode,
   createText,
   isInlineStyleRange,
-  createNode,
   type DocumentType,
+  type MarkType,
+  type NodeType,
+  type TextType,
 } from "./utils";
 import {
-  mapInlineStyleToMark,
+  mapBlockToNode,
   mapEntityToMark,
   mapEntityToNode,
-  mapBlockToNode,
+  mapInlineStyleToMark,
 } from "./mappings";
-
-type BlockMapContext = {
-  /**
-   * The draft converter instance.
-   */
-  converter: DraftConverter;
-  /**
-   * The entity map of the Draft.js content.
-   */
-  entityMap: RawDraftContentState["entityMap"];
-  /**
-   * The current document tree
-   */
-  doc: DocumentType;
-  /**
-   * The current block to convert.
-   */
-  getCurrentBlock: () => RawDraftContentBlock;
-  /**
-   * The current block to convert.
-   */
-  block: RawDraftContentBlock;
-  /**
-   * The index of the current block.
-   */
-  index: number;
-  /**
-   * Peeks at the next block in the content. Without iterating.
-   * @returns The next block or null if there is no next block.
-   */
-  peek: () => RawDraftContentBlock | null;
-  /**
-   * Peeks at the previous block in the content. Without iterating.
-   * @returns The previous block or null if there is no previous block.
-   */
-  peekPrev: () => RawDraftContentBlock | null;
-  /**
-   * Gets the next block in the content. Iterating forward.
-   * @returns The next block or null if there is no next block.
-   */
-  next: () => RawDraftContentBlock | null;
-  /**
-   * Gets the previous block in the content. Iterating backward.
-   * @returns The previous block or null if there is no previous block.
-   */
-  prev: () => RawDraftContentBlock | null;
-};
-/**
- * A function that maps a Draft.js block to a ProseMirror node.
- * @returns false if the block was not mapped, undefined if it was mapped
- */
-export type MapBlockToNodeFn = (
-  context: BlockMapContext
-) => NodeType | boolean | void | undefined;
-
-/**
- * A function that maps a Draft.js inline style to a ProseMirror mark.
- */
-export type MapInlineStyleToMarkFn = (context: {
-  range: RawDraftInlineStyleRange;
-  converter: DraftConverter;
-}) => MarkType | null;
-
-/**
- * A function that maps a Draft.js entity to a ProseMirror mark.
- */
-export type MapEntityToMarkFn = (context: {
-  range: RawDraftEntityRange;
-  entityMap: RawDraftContentState["entityMap"];
-  converter: DraftConverter;
-}) => MarkType | null;
-
-/**
- * A function that maps a Draft.js entity to a ProseMirror node.
- */
-export type MapEntityToNodeFn = (context: {
-  converter: DraftConverter;
-  range: RawDraftEntityRange;
-  entityMap: RawDraftContentState["entityMap"];
-}) => NodeType | null;
 
 export type DraftConverterOptions = {
   mapBlockToNode: MapBlockToNodeFn;
@@ -139,17 +65,29 @@ export class DraftConverter {
 
   public createNode = createNode;
   public addChild = addChild;
+  public createText = createText;
+  public addMark = addMark;
 
-  mapRangeToMark(
-    range: RawDraftInlineStyleRange | RawDraftEntityRange,
-    entityMap: RawDraftContentState["entityMap"]
-  ): MarkType | null {
+  mapRangeToMark({
+    range,
+    entityMap,
+    doc,
+    block,
+  }: {
+    range: RawDraftInlineStyleRange | RawDraftEntityRange;
+    entityMap: RawDraftContentState["entityMap"];
+    doc: DocumentType;
+    block: RawDraftContentBlock;
+  }): MarkType | null {
     if (isInlineStyleRange(range)) {
       try {
-        const inlineStyle = this.options.mapInlineStyleToMark({
-          range,
-          converter: this,
-        });
+        const inlineStyle =
+          this.options.mapInlineStyleToMark({
+            range,
+            converter: this,
+            doc,
+            block,
+          }) ?? null;
 
         if (inlineStyle) {
           return inlineStyle;
@@ -163,11 +101,14 @@ export class DraftConverter {
     }
 
     try {
-      const entity = this.options.mapEntityToMark({
-        range,
-        entityMap,
-        converter: this,
-      });
+      const entity =
+        this.options.mapEntityToMark({
+          range,
+          entityMap,
+          converter: this,
+          doc,
+          block,
+        }) ?? null;
 
       if (entity) {
         return entity;
@@ -181,26 +122,28 @@ export class DraftConverter {
   }
 
   mapBlockToNode: MapBlockToNodeFn = (options) => {
-    let didConsume: boolean | NodeType = false;
+    let didConsume: null | NodeType = null;
     try {
-      didConsume = this.options.mapBlockToNode.call(this, options) ?? false;
+      didConsume = this.options.mapBlockToNode.call(this, options) ?? null;
     } catch (e) {
       console.error(e);
     }
 
-    if (didConsume === false) {
+    if (didConsume === null) {
       this.unmatched.blocks.push(options.getCurrentBlock());
     }
 
     return didConsume;
   };
 
-  mapEntityToNode: MapEntityToNodeFn = ({ range, entityMap }) => {
+  mapEntityToNode: MapEntityToNodeFn = ({ range, entityMap, doc, block }) => {
     try {
       const node = this.options.mapEntityToNode({
         range,
         entityMap,
         converter: this,
+        doc,
+        block,
       });
       if (node) {
         return node;
@@ -227,6 +170,10 @@ export class DraftConverter {
      * The entity map of the Draft.js content.
      */
     entityMap: RawDraftContentState["entityMap"];
+    /**
+     * The current document tree
+     */
+    doc: DocumentType;
   }): TextType[] {
     const allRanges = [
       ...options.block.entityRanges,
@@ -283,7 +230,15 @@ export class DraftConverter {
       const textNode = createText(text);
 
       ranges.forEach((range) =>
-        addMark(textNode, this.mapRangeToMark(range, options.entityMap))
+        addMark(
+          textNode,
+          this.mapRangeToMark({
+            range,
+            entityMap: options.entityMap,
+            doc: options.doc,
+            block: options.block,
+          })
+        )
       );
 
       return textNode;
@@ -291,15 +246,26 @@ export class DraftConverter {
   }
 
   convert(draft: RawDraftContentState) {
+    // Reset unmatched blocks, entities, and inline styles on each conversion
+    this.unmatched = {
+      blocks: [],
+      entities: {},
+      inlineStyles: [],
+    };
+
     const doc = createDocument();
     let i = 0;
     const ctx = {
       get index() {
         return i;
       },
+      setIndex: (index: number) => {
+        i = index;
+      },
       get block() {
         return draft.blocks[i];
       },
+      allBlocks: draft.blocks,
       get doc() {
         return doc;
       },
@@ -310,7 +276,7 @@ export class DraftConverter {
       next: () => draft.blocks[i++] || null,
       prev: () => draft.blocks[i--] || null,
       converter: this,
-    } satisfies BlockMapContext;
+    } satisfies Parameters<MapBlockToNodeFn>[0];
 
     for (; i < draft.blocks.length; i++) {
       const mapped = this.mapBlockToNode.call(this, ctx);

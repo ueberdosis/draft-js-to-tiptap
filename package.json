@@ -2,6 +2,11 @@
   "name": "draft-to-tiptap",
   "module": "index.ts",
   "type": "module",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "bun build --format esm --input src/index.ts --outdir=./dist && bun run build:declaration",
+    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json"
+  },
   "devDependencies": {
     "@types/bun": "latest"
   },

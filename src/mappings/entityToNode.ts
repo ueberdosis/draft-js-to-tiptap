@@ -1,7 +1,8 @@
 import type { RawDraftEntity } from "draft-js";
 
 import { type NodeType, createNode } from "../utils";
-import type { DraftConverter, MapEntityToNodeFn } from "../draftConverter";
+import type { DraftConverter } from "../draftConverter";
+import type { MapEntityToNodeFn } from "../types";
 
 export const entityToNodeMapping: Record<
   string,

@@ -1,5 +1,5 @@
 import { addChild, createNode, createText, type NodeType } from "../utils";
-import type { MapBlockToNodeFn } from "../draftConverter";
+import type { MapBlockToNodeFn } from "../types";
 import type { NodeMapping } from "..";
 
 function isListNode(
@@ -16,8 +16,9 @@ function isListNode(
  * So, we need to build the tree structure for the list.
  */
 const mapToListNode: MapBlockToNodeFn = function ({
-  entityMap,
+  doc,
   getCurrentBlock,
+  entityMap,
   peek,
   next,
   converter,
@@ -74,6 +75,7 @@ const mapToListNode: MapBlockToNodeFn = function ({
         content: [
           createNode("paragraph", {
             content: converter.splitTextByEntityRangesAndInlineStyleRanges({
+              doc,
               block: getCurrentBlock(),
               entityMap,
             }),
@@ -106,6 +108,7 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({
   block,
   entityMap,
   converter,
+  doc,
 }) {
   const headingLevel = {
     "header-one": 1,
@@ -121,11 +124,13 @@ const mapToHeadingNode: MapBlockToNodeFn = function ({
     content: converter.splitTextByEntityRangesAndInlineStyleRanges({
       block,
       entityMap,
+      doc,
     }),
   });
 };
 
 const mapToTableNode: MapBlockToNodeFn = function ({
+  doc,
   getCurrentBlock,
   entityMap,
   converter,
@@ -148,6 +153,7 @@ const mapToTableNode: MapBlockToNodeFn = function ({
         content: [
           createNode("paragraph", {
             content: converter.splitTextByEntityRangesAndInlineStyleRanges({
+              doc,
               block: getCurrentBlock(),
               entityMap,
             }),
@@ -166,7 +172,7 @@ const mapToTableNode: MapBlockToNodeFn = function ({
 };
 
 export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
-  atomic({ block, entityMap, converter }) {
+  atomic({ doc, block, entityMap, converter }) {
     if (block.entityRanges.length === 0) {
       if (block.inlineStyleRanges.length === 0) {
         // Plain text, fast path
@@ -178,12 +184,18 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     const paragraph = createNode("paragraph");
     const entities = block.entityRanges
       .map((range) => {
-        return converter.mapEntityToNode({ range, entityMap, converter });
+        return converter.mapEntityToNode({
+          doc,
+          block,
+          range,
+          entityMap,
+          converter,
+        });
       })
       .filter(Boolean);
 
     if (entities.length === 0) {
-      return false;
+      return null;
     }
 
     return addChild(paragraph, entities);
@@ -193,11 +205,12 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
       content: [createText(block.text)],
     });
   },
-  blockquote({ block, entityMap, converter }) {
+  blockquote({ doc, block, entityMap, converter }) {
     return createNode("blockquote", {
       content: [
         createNode("paragraph", {
           content: converter.splitTextByEntityRangesAndInlineStyleRanges({
+            doc,
             block,
             entityMap,
           }),
@@ -205,9 +218,9 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
       ],
     });
   },
-  unstyled({ block, entityMap, converter }) {
+  unstyled({ doc, block, entityMap, converter }) {
     if (!block.text) {
-      return false;
+      return null;
     }
     const paragraph = createNode("paragraph");
     if (block.inlineStyleRanges.length === 0) {
@@ -220,6 +233,7 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     return addChild(
       paragraph,
       converter.splitTextByEntityRangesAndInlineStyleRanges({
+        doc,
         block,
         entityMap,
       })
@@ -242,5 +256,5 @@ export const mapBlockToNode: MapBlockToNodeFn = function (options) {
     return blockToNodeMapping[block.type](options);
   }
 
-  return false;
+  return null;
 };

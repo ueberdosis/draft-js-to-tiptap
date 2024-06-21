@@ -1,5 +1,6 @@
 import type { MarkType, NodeType } from "./utils";
 
+export * from "./types";
 export * from "./draftConverter";
 export * from "./mappings";
 export * from "./utils";

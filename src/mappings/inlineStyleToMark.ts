@@ -1,4 +1,4 @@
-import type { MapInlineStyleToMarkFn } from "../draftConverter";
+import type { MapInlineStyleToMarkFn } from "../types";
 import type { MarkType } from "../utils";
 
 export const inlineStyleToMarkMapping: Record<string, MarkType> = {
