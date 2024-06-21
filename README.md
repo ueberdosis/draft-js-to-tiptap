@@ -2,7 +2,7 @@
 
 Convert Draft.js content to Tiptap-compatible content.
 
-The best place to try this library is in the [CodeSandbox](https://codesandbox.io/p/sandbox/draftjs-to-tiptap-6d44d3).
+The best place to try this library is in the [CodeSandbox](https://codesandbox.io/p/sandbox/draftjs-to-tiptap-6d44d3?file=%2Fsrc%2FconvertFromJSON.ts%3A3%2C34).
 
 ## Why?
 

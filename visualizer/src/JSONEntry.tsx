@@ -2,7 +2,7 @@ import { Editor, JSONContent, createNodeFromContent } from "@tiptap/react";
 import { useEffect, useState } from "react";
 
 import { DraftConverter, isDocument, isDraftJSContent } from "../../src/index";
-import { convertFromJSON } from "./convertFromJson";
+import { convertFromJSON } from "./convertFromJSON";
 
 export function JSONEntry({
   editor,
