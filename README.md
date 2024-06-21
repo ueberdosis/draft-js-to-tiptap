@@ -2,6 +2,8 @@
 
 Convert Draft.js content to Tiptap-compatible content.
 
+The best place to try this library is in the [CodeSandbox](https://codesandbox.io/p/sandbox/draftjs-to-tiptap-6d44d3).
+
 ## Why?
 
 Draft.js and Tiptap are both rich text editors, but they have different data structures. Draft.js preferring a flat structure of blocks with inline styles and entities, while Tiptap uses a nested structure of nodes and marks.
@@ -12,17 +14,11 @@ Draft.js has been archived, and Tiptap is a popular alternative for building ric
 
 ```bash
 npm install @tiptap/draftjs-to-tiptap
-```
 
-```bash
 yarn add @tiptap/draftjs-to-tiptap
-```
 
-```bash
 pnpm add @tiptap/draftjs-to-tiptap
-```
 
-```bash
 bun add @tiptap/draftjs-to-tiptap
 ```
 
@@ -178,6 +174,8 @@ const convertDraftToTiptap = new DraftConverter({
     }
   }
 });
+
+const tiptapContent = convertDraftToTiptap.convert(draftContent);
 ```
 
 #### Advanced Custom Mappings
@@ -252,9 +250,7 @@ const convertDraftToTiptap = new DraftConverter({
   },
 });
 
-console.log(
-  JSON.stringify(convertDraftToTiptap.convert(draftContent), null, 2)
-);
+const tiptapContent = convertDraftToTiptap.convert(draftContent);
 ```
 
 ## API
