@@ -70,7 +70,10 @@ export function addChild<TNodeType extends keyof NodeMapping>(
  */
 export function addMark<TNodeType extends keyof NodeMapping>(
   node: NodeMapping[TNodeType],
-  mark: NonNullable<NodeMapping[TNodeType]["marks"]>[number] | null
+  mark:
+    | NonNullable<NodeMapping[TNodeType]["marks"]>
+    | NonNullable<NodeMapping[TNodeType]["marks"]>[number]
+    | null
 ): NodeMapping[TNodeType] {
   if (!node && !mark) {
     throw new Error("Cannot add a null mark to a null node.");
@@ -84,7 +87,11 @@ export function addMark<TNodeType extends keyof NodeMapping>(
     node.marks = [];
   }
 
-  node.marks.push(mark);
+  if (Array.isArray(mark)) {
+    node.marks.push.apply(node.marks, mark);
+  } else {
+    node.marks.push(mark);
+  }
 
   return node;
 }
@@ -102,14 +109,6 @@ export function createDocument(): DocumentType {
 
 export function createText(text: string, marks?: MarkType[]): TextType {
   return { type: "text", text, marks: marks || [] };
-}
-
-export function isListNode(
-  node: NodeType | null | undefined
-): node is NodeMapping["bulletList"] | NodeMapping["orderedList"] {
-  return Boolean(
-    node && (node.type === "bulletList" || node.type === "orderedList")
-  );
 }
 
 export function isInlineStyleRange(

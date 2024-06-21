@@ -14,13 +14,12 @@ export const entityToNodeMapping: Record<
     return createNode("horizontalRule");
   },
   IMAGE: ({ entity }) => {
-    return {
-      type: "image",
+    return createNode("image", {
       attrs: {
         src: entity.data.src,
         alt: entity.data.alt,
       },
-    };
+    });
   },
 };
 

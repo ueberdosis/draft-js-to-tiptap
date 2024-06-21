@@ -1,5 +1,5 @@
 import { DraftConverter, type NodeType } from "./src/index";
-import draft from "./test/draft-table-drafttail.json";
+import draft from "./test/draft-medium-complex.json";
 
 // You can add your own node types like this:
 declare module "./src/index" {

@@ -96,21 +96,16 @@ describe("utils.addMark", () => {
     utils.addMark(node, mark);
     expect(node).toEqual({ type: "paragraph", marks: [{ type: "bold" }] });
   });
-});
 
-describe("utils.isListNode", () => {
-  test("should return true if node is a bulletList node", () => {
-    const node = utils.createNode("bulletList");
-    expect(utils.isListNode(node)).toBe(true);
-  });
-  test("should return true if node is a orderedList node", () => {
-    const node = utils.createNode("orderedList");
-    expect(utils.isListNode(node)).toBe(true);
-  });
-
-  test("should return false if node is not a list node", () => {
-    const node = utils.createNode("paragraph");
-    expect(utils.isListNode(node)).toBe(false);
+  test("should add multiple marks to a node with marks", () => {
+    const node = utils.createNode("paragraph", { marks: [] });
+    const mark1 = { type: "bold" };
+    const mark2 = { type: "italic" };
+    utils.addMark(node, [mark1, mark2]);
+    expect(node).toEqual({
+      type: "paragraph",
+      marks: [{ type: "bold" }, { type: "italic" }],
+    });
   });
 });
 

@@ -10,6 +10,7 @@ export const inlineStyleToMarkMapping: Record<string, MarkType> = {
   UNDERLINE: { type: "underline" },
   SUBSCRIPT: { type: "subscript" },
   SUPERSCRIPT: { type: "superscript" },
+  HIGHLIGHT: { type: "highlight" },
 };
 
 export const mapInlineStyleToMark: MapInlineStyleToMarkFn = function ({

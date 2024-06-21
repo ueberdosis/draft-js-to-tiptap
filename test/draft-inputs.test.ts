@@ -5,6 +5,7 @@ import draftList from "./draft-list.json";
 import draftAxios from "./draft-axios.json";
 import draftTail from "./draft-drafttail.json";
 import draftTailTable from "./draft-table-drafttail.json";
+import draftMediumComplex from "./draft-medium-complex.json";
 
 test("draft-list-simple", () => {
   const converter = new DraftConverter();
@@ -29,4 +30,9 @@ test("draft-drafttail", () => {
 test("draft-table-drafttail", () => {
   const converter = new DraftConverter();
   expect(converter.convert(draftTailTable as any)).toMatchSnapshot();
+});
+
+test("draft-medium-complex", () => {
+  const converter = new DraftConverter();
+  expect(converter.convert(draftMediumComplex as any)).toMatchSnapshot();
 });

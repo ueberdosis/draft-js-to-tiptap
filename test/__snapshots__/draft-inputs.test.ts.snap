@@ -1785,3 +1785,1093 @@ exports[`draft-table-drafttail 1`] = `
   "type": "doc",
 }
 `;
+
+exports[`draft-medium-complex 1`] = `
+{
+  "content": [
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [
+            {
+              "attrs": {
+                "href": "https://github.com/brijeshb42/medium-draft",
+                "target": undefined,
+              },
+              "type": "link",
+            },
+          ],
+          "text": "medium-draft",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "This page is fully editable.",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Try to select some text to open the toolbar",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [],
+                  "text": "Goto an empty line to add an image.",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "marks": [],
+              "text": "A medium like rich text editor built using ",
+              "type": "text",
+            },
+            {
+              "marks": [
+                {
+                  "attrs": {
+                    "href": "https://facebook.github.io/draft-js/",
+                    "target": undefined,
+                  },
+                  "type": "link",
+                },
+              ],
+              "text": "draft-js",
+              "type": "text",
+            },
+            {
+              "marks": [],
+              "text": " with an emphasis on eliminating mouse usage by adding relevant keyboard shortcuts.",
+              "type": "text",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "type": "blockquote",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "marks": [],
+              "text": "The keyboard ",
+              "type": "text",
+            },
+            {
+              "marks": [
+                {
+                  "type": "bold",
+                },
+              ],
+              "text": "shortcuts",
+              "type": "text",
+            },
+            {
+              "marks": [],
+              "text": " are ",
+              "type": "text",
+            },
+            {
+              "marks": [
+                {
+                  "type": "bold",
+                },
+              ],
+              "text": "mentioned",
+              "type": "text",
+            },
+            {
+              "marks": [],
+              "text": " below.",
+              "type": "text",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "type": "blockquote",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "It also has implementations of some custom blocks like",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Custom Blocks",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "marks": [],
+              "text": "This is a blockquote.",
+              "type": "text",
+            },
+          ],
+          "type": "paragraph",
+        },
+      ],
+      "type": "blockquote",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Image Block",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "marks": [
+            {
+              "type": "highlight",
+            },
+          ],
+          "text": "This is an Image block. Images can be added by going to a new empty line and then clicking the ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "highlight",
+            },
+            {
+              "type": "bold",
+            },
+          ],
+          "text": "(+)",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "highlight",
+            },
+          ],
+          "text": " button that appears on the left of the cursor.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Embed Block (Using Embedly)",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Todo Block",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Keyboard shortcuts",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Following are the keyboard shortcuts to toggle block types (",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "Alt",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " and ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "CTRL",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " for Windows/Linux and ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "Option",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " and ",
+          "type": "text",
+        },
+        {
+          "marks": [
+            {
+              "type": "code",
+            },
+          ],
+          "text": "Command",
+          "type": "text",
+        },
+        {
+          "marks": [],
+          "text": " for OSX.",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "Alt/Option",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " +",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+            {
+              "content": [
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "1",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Toggle ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "bold",
+                            },
+                          ],
+                          "text": "ordered-list-item",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": ".",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "*",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Toggle ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "bold",
+                            },
+                          ],
+                          "text": "unordered-list-item",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": ".",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "@",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Add ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "highlight",
+                            },
+                          ],
+                          "text": "link",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " to selected text.",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "#",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Toggle ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "bold",
+                            },
+                          ],
+                          "text": "header-three",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": ".",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "<",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Toggle ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "bold",
+                            },
+                          ],
+                          "text": "caption",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " block.",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": ">",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - Toggle ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "bold",
+                            },
+                          ],
+                          "text": "unstyled",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " block.",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+                {
+                  "content": [
+                    {
+                      "content": [
+                        {
+                          "marks": [
+                            {
+                              "type": "code",
+                            },
+                          ],
+                          "text": "H",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " - ",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [
+                            {
+                              "type": "highlight",
+                            },
+                          ],
+                          "text": "Highlight",
+                          "type": "text",
+                        },
+                        {
+                          "marks": [],
+                          "text": " selection.",
+                          "type": "text",
+                        },
+                      ],
+                      "type": "paragraph",
+                    },
+                  ],
+                  "type": "listItem",
+                },
+              ],
+              "type": "bulletList",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Editor level commands",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "Command/CTRL + S",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - Save current data to ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "localstorage",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ".",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "Alt + Shift + D",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - Load previously saved data from ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "localstorage",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ".",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "orderedList",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "Special characters while typing: If while typing in an empty block, if the content matches one of the following, that particular block type will be changed to the corresponding block specified below -",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "--",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "(2 hyphens)",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - If current block is ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "blockquote",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ", it will be changed to ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "block-quote-caption",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ", else ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "caption",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ".",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "*.",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "(An asterisk and a period)",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "unordered-list-item",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "1.",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "(1 and a period)",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "ordered-list-item",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": ".",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "##",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "header-three",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "==",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "unstyled",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "[]",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": " - ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "todo",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+        {
+          "content": [
+            {
+              "content": [
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "> ",
+                  "type": "text",
+                },
+                {
+                  "marks": [],
+                  "text": "- ",
+                  "type": "text",
+                },
+                {
+                  "marks": [
+                    {
+                      "type": "code",
+                    },
+                  ],
+                  "text": "blockquote",
+                  "type": "text",
+                },
+              ],
+              "type": "paragraph",
+            },
+          ],
+          "type": "listItem",
+        },
+      ],
+      "type": "bulletList",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Todos",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+    {
+      "attrs": {
+        "level": 3,
+      },
+      "content": [
+        {
+          "marks": [],
+          "text": "Issue",
+          "type": "text",
+        },
+      ],
+      "type": "heading",
+    },
+  ],
+  "type": "doc",
+}
+`;
