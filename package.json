@@ -2,6 +2,7 @@
   "name": "draft-to-tiptap",
   "module": "index.ts",
   "type": "module",
+  "version": "0.0.0",
   "scripts": {
     "changeset": "changeset",
     "version-packages": "changeset version",

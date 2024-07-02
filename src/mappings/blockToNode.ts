@@ -250,6 +250,9 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
   "table-cell": mapToTableNode,
 };
 
+/**
+ * Maps a Draft.js block to a ProseMirror node.
+ */
 export const mapBlockToNode: MapBlockToNodeFn = function (options) {
   const block = options.getCurrentBlock();
   if (blockToNodeMapping[block.type]) {
