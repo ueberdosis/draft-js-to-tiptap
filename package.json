@@ -3,12 +3,16 @@
   "module": "index.ts",
   "type": "module",
   "scripts": {
+    "changeset": "changeset",
+    "version-packages": "changeset version",
+    "release": "bun run build && changesets publish",
     "prebuild": "rm -rf dist",
-    "build": "bun build --format esm --input src/index.ts --outdir=./dist && bun run build:declaration",
-    "build:declaration": "tsc --emitDeclarationOnly --project tsconfig.types.json"
+    "build": "tsup src/index.ts --format esm,cjs --dts"
   },
   "devDependencies": {
-    "@types/bun": "latest"
+    "@changesets/cli": "^2.27.7",
+    "@types/bun": "latest",
+    "tsup": "^8.1.0"
   },
   "peerDependencies": {
     "typescript": "^5.4.5"
@@ -16,5 +20,8 @@
   "dependencies": {
     "@types/draft-js": "^0.11.18",
     "@types/prosemirror-model": "^1.17.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
