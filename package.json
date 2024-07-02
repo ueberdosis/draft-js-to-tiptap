@@ -5,7 +5,8 @@
   "scripts": {
     "changeset": "changeset",
     "version-packages": "changeset version",
-    "release": "bun run build && changesets publish",
+    "prerelease": "bun run build",
+    "release": "changesets publish",
     "prebuild": "rm -rf dist",
     "build": "tsup src/index.ts --format esm,cjs --dts"
   },
