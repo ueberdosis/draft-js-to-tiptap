@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.5
+
+### Patch Changes
+
+- e35f457: Try rebuild
+
 ## 0.0.4
 
 ### Patch Changes
