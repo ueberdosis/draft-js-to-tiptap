@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.3
+
+### Patch Changes
+
+- 1e5f219: Minor change for republish
+
 ## 0.0.2
 
 ### Patch Changes
