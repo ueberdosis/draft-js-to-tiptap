@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.8
+
+### Patch Changes
+
+- e3b2f2e: Rebuild
+
 ## 0.0.7
 
 ### Patch Changes
