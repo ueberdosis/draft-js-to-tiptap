@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.4
+
+### Patch Changes
+
+- f1b6758: Repub
+
 ## 0.0.3
 
 ### Patch Changes
