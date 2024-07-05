@@ -15,6 +15,9 @@
       "types": "./dist/index.d.ts"
     }
   },
+  "files": [
+    "dist"
+  ],
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
