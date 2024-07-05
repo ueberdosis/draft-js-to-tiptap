@@ -1,8 +1,9 @@
 {
-  "name": "draft-to-tiptap",
+  "name": "@tiptap/draftjs-to-tiptap",
   "module": "index.ts",
   "type": "module",
   "version": "0.0.0",
+  "license": "MIT",
   "scripts": {
     "changeset": "changeset",
     "version-packages": "changeset version",
