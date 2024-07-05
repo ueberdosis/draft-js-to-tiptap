@@ -2,8 +2,12 @@
   "name": "@tiptap/draftjs-to-tiptap",
   "module": "index.ts",
   "type": "module",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ueberdosis/draft-js-to-tiptap"
+  },
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
