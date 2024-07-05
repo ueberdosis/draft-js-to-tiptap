@@ -18,7 +18,7 @@
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
-    "release": "npm run build && npm run changeset",
+    "release": "npm run build && npm run changeset publish",
     "test": "bun test",
     "prebuild": "rm -rf dist",
     "build": "tsup src/index.ts --format esm,cjs --dts"
