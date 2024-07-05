@@ -6,7 +6,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/ueberdosis/draft-js-to-tiptap"
+    "url": "git+https://github.com/ueberdosis/draft-js-to-tiptap.git"
   },
   "scripts": {
     "changeset": "changeset",

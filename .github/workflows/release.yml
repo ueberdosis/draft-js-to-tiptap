@@ -44,27 +44,3 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
-
-      - name: Send release notification
-        if: steps.changesets.outputs.published == 'true'
-        id: slack
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {
-              "message": "[Draftjs-to-Tiptap Release]: New draftjs-to-tiptap version has been released to NPM."
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
-
-      - name: Send failure notification
-        if: failure()
-        id: slack_failure
-        uses: slackapi/slack-github-action@v1.26.0
-        with:
-          payload: |
-            {
-              "message": "[Draftjs-to-Tiptap Release]: There was an issue publishing a new version. You can find the logs here: https://github.com/ueberdosis/tiptap/actions/runs/${{ github.run_id }}"
-            }
-        env:
-          SLACK_WEBHOOK_URL: ${{ secrets.SLACK_WEBHOOK_URL }}
