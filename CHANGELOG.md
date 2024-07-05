@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.10
+
+### Patch Changes
+
+- 1c01d45: Only some files
+
 ## 0.0.9
 
 ### Patch Changes
