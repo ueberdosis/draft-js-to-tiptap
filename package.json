@@ -19,7 +19,7 @@
     "changeset": "changeset",
     "version": "changeset version",
     "prepublish": "bun run build",
-    "publish": "bun run build && npm run changeset publish",
+    "publish": "npm run changeset publish",
     "test": "bun test",
     "prebuild": "rm -rf dist",
     "build": "tsup src/index.ts --format esm,cjs --dts"
