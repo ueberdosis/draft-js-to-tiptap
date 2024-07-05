@@ -34,7 +34,7 @@ jobs:
           registry-url: "https://registry.npmjs.org/"
 
       - name: Install Dependencies
-        run: bun install
+        run: bun install && bun run build
 
       - name: Create Release Pull Request or Publish to npm
         id: changesets
