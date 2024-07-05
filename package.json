@@ -8,6 +8,13 @@
     "type": "git",
     "url": "git+https://github.com/ueberdosis/draft-js-to-tiptap.git"
   },
+  "exports": {
+    ".": {
+      "import": "./dist/index.js",
+      "require": "./dist/index.cjs",
+      "types": "./dist/index.d.ts"
+    }
+  },
   "scripts": {
     "changeset": "changeset",
     "version": "changeset version",
