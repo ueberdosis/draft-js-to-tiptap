@@ -1,5 +1,5 @@
 ---
-"draft-to-tiptap": patch
+"@tiptap/draftjs-to-tiptap": patch
 ---
 
 Initial Release
