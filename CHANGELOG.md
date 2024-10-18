@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.11
+
+### Patch Changes
+
+- 1eafe07: When splitting strings, we now support emoji characters properly
+
 ## 0.0.10
 
 ### Patch Changes
