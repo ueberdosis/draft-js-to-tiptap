@@ -207,7 +207,8 @@ export class DraftConverter {
     // Split the text into groups by their range
     let currentRanges: (RawDraftEntityRange | RawDraftInlineStyleRange)[] = [];
     let currentText: string = "";
-    for (let i = 0; i < options.block.text.length; i++) {
+    const text = Array.from(options.block.text);
+    for (let i = 0; i < text.length; i++) {
       let styles = stylesAtPosition[i] || [];
       if (
         styles.length !== currentRanges.length ||
@@ -219,7 +220,8 @@ export class DraftConverter {
         currentText = "";
         currentRanges = styles;
       }
-      currentText += options.block.text[i];
+
+      currentText += text[i];
     }
 
     if (currentText) {
