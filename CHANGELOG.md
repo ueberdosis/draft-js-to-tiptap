@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.0.12
+
+### Patch Changes
+
+- 60bfb92: Update how the typings are exported for the package
+
 ## 0.0.11
 
 ### Patch Changes
