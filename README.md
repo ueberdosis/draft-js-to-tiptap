@@ -133,7 +133,7 @@ const tiptapContent = convertDraftToTiptap.convert(draftContent);
 
 It can be helpful to visualize the conversion process. You can use the visualizer web app to see the conversion process in action. The visualizer allows you to input Draft.js content and see the Tiptap content that is generated, inside a live Tiptap editor.
 
-You can access the visualizer in [CodeSandbox](https://codesandbox.io/p/sandbox/draftjs-to-tiptap-forked-9jh442?file=%2Fsrc%2FconvertFromJSON.ts%3A3%2C34).
+You can access the visualizer in [CodeSandbox](https://codesandbox.io/p/sandbox/draftjs-to-tiptap-6d44d3?file=%2Fsrc%2FconvertFromJSON.ts%3A3%2C34).
 
 It's source is available in the `visualizer` directory in this repository.
 
