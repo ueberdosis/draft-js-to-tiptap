@@ -33,14 +33,11 @@
   "devDependencies": {
     "@changesets/cli": "^2.27.11",
     "@types/bun": "latest",
-    "tsup": "^8.3.5"
-  },
-  "peerDependencies": {
+    "tsup": "^8.3.5",
     "typescript": "^5.4.5"
   },
-  "dependencies": {
-    "@types/draft-js": "^0.11.18",
-    "@types/prosemirror-model": "^1.17.0"
+  "peerDependencies": {
+    "@types/draft-js": "^0.11.18"
   },
   "publishConfig": {
     "access": "public",
