@@ -1664,6 +1664,16 @@ exports[`draft-table-drafttail 1`] = `
     {
       "content": [
         {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
+    },
+    {
+      "content": [
+        {
           "content": [
             {
               "content": [
@@ -1780,6 +1790,16 @@ exports[`draft-table-drafttail 1`] = `
         },
       ],
       "type": "table",
+    },
+    {
+      "content": [
+        {
+          "marks": [],
+          "text": "",
+          "type": "text",
+        },
+      ],
+      "type": "paragraph",
     },
   ],
   "type": "doc",
