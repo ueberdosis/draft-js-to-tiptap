@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.1.0
+
+### Minor Changes
+
+- d21b8b6: Allow blank text blocks in default block mapping
+
 ## 0.0.12
 
 ### Patch Changes
