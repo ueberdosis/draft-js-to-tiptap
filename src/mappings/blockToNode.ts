@@ -219,9 +219,6 @@ export const blockToNodeMapping: Record<string, MapBlockToNodeFn> = {
     });
   },
   unstyled({ doc, block, entityMap, converter }) {
-    if (!block.text) {
-      return null;
-    }
     const paragraph = createNode("paragraph");
     if (block.inlineStyleRanges.length === 0) {
       if (block.entityRanges.length === 0) {
