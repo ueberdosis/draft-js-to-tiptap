@@ -1,14 +1,5 @@
-import { addChild, createNode, createText, type NodeType } from "../utils";
+import { addChild, createNode, createText, isListNode } from "../utils";
 import type { MapBlockToNodeFn } from "../types";
-import type { NodeMapping } from "..";
-
-function isListNode(
-  node: NodeType | null | undefined
-): node is NodeMapping["bulletList"] | NodeMapping["orderedList"] {
-  return Boolean(
-    node && (node.type === "bulletList" || node.type === "orderedList")
-  );
-}
 
 /**
  * Lists are represented as a tree structure in ProseMirror.

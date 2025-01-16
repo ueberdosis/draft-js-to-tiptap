@@ -263,3 +263,66 @@ export function isNode(node: unknown): node is NodeType {
     node.type !== "text"
   );
 }
+
+/**
+ * Check if a node is a list node.
+ */
+export function isListNode(
+  node: NodeType | null | undefined
+): node is NodeMapping["bulletList"] | NodeMapping["orderedList"] {
+  return Boolean(
+    node && (node.type === "bulletList" || node.type === "orderedList")
+  );
+}
+
+/**
+ * Adds a child to a list node, keeping the list structure intact.
+ */
+export function addChildToList<TNodeType extends keyof NodeMapping>(
+  /**
+   * The list to add the child to
+   */
+  parent: NodeMapping[TNodeType],
+  /**
+   * The child to add to the list
+   */
+  child: NodeType,
+  /**
+   * If true, append the child to the last list item in the list, if it exists
+   * If false, add the child as a new list item
+   * @default false
+   */
+  append = true
+) {
+  // If the parent is not a list node, add the child directly
+  if (!isListNode(parent)) {
+    addChild(parent, child);
+    return;
+  }
+
+  // If already adding a list item, add the child to the list item directly
+  if (child.type === "listItem") {
+    addChild(parent, child);
+    return;
+  }
+
+  // If the child is a list, add it to the list within it's own list item
+  if (child.type === "orderedList" || child.type === "bulletList") {
+    if (append && parent.content) {
+      const lastChild = parent.content[parent.content.length - 1];
+      if (lastChild) {
+        addChild(lastChild, child);
+        return;
+      }
+    }
+  }
+
+  if (child.type === "paragraph" && (child.content || []).length === 0) {
+    // Ignore empty paragraphs
+    return;
+  }
+
+  // Wrap the child in a list item
+  child = addChild(createNode("listItem"), child);
+  addChild(parent, child);
+}
