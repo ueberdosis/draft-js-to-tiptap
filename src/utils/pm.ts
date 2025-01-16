@@ -1,17 +1,96 @@
-import type { NodeMapping } from "./index";
-import type {
-  RawDraftContentState,
-  RawDraftEntityRange,
-  RawDraftInlineStyleRange,
-} from "draft-js";
+export interface MarkMapping {
+  bold: MarkType<"bold">;
+  code: MarkType<"code">;
+  italic: MarkType<"italic">;
+  strike: MarkType<"strike">;
+  underline: MarkType<"underline">;
+  subscript: MarkType<"subscript">;
+  superscript: MarkType<"superscript">;
+  highlight: MarkType<"highlight", { color: string }>;
+  link: MarkType<"link", { href: string; target: string }>;
+  textStyle: MarkType<"textStyle", { fontFamily?: string; color?: string }>;
+}
 
-export type DraftJSContent = RawDraftContentState;
+export interface NodeMapping {
+  /**
+   * Doc is special, it's the root of the document
+   */
+  doc: NodeType<"doc", Record<string, any>, MarkType, NodeType[]>;
+  /**
+   * Text is special, it's the leaf node of the document
+   */
+  text: NodeType<"text", Record<string, any>, MarkType, never>;
+  // All other node types are defined here.
+  blockquote: NodeType<"blockquote">;
+  bulletList: NodeType<
+    "bulletList",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  codeBlock: NodeType<"codeBlock">;
+  hardBreak: NodeType<"hardBreak">;
+  heading: NodeType<"heading", { level: number }>;
+  horizontalRule: NodeType<"horizontalRule">;
+  image: NodeType<"image", { src: string; alt?: string }>;
+  listItem: NodeType<
+    "listItem",
+    Record<string, any>,
+    MarkType,
+    (NodeType<"bulletList"> | NodeType<"orderedList"> | NodeType<"paragraph">)[]
+  >;
+  orderedList: NodeType<
+    "orderedList",
+    {
+      type?: "1" | "a" | "A" | "i" | "I";
+      start?: number;
+    },
+    MarkType,
+    NodeMapping["listItem"][]
+  >;
+  paragraph: NodeType<"paragraph">;
+  tableCell: NodeType<
+    "tableCell",
+    {
+      colwidth?: number[];
+      colspan?: number;
+      rowspan?: number;
+    },
+    MarkType,
+    NodeType[]
+  >;
+  tableHeader: NodeType<
+    "tableCell",
+    {
+      colwidth?: number[];
+      colspan?: number;
+      rowspan?: number;
+    },
+    MarkType,
+    NodeType[]
+  >;
+  tableRow: NodeType<
+    "tableRow",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["tableCell"][]
+  >;
+  table: NodeType<
+    "table",
+    Record<string, any>,
+    MarkType,
+    NodeMapping["tableRow"][]
+  >;
+  // Custom node types that are not real yet
+  pageBreak: NodeType<"pageBreak">;
+}
+
 export type MarkType<
   Type extends string = string,
   Attributes extends Record<string, any> = Record<string, any>
 > = {
   type: Type;
-  attrs?: Attributes;
+  attrs?: Attributes & Record<string, any>;
 };
 
 export type NodeType<
@@ -21,7 +100,7 @@ export type NodeType<
   TContentType extends NodeType[] = any
 > = {
   type: TNodeType;
-  attrs?: TNodeAttributes;
+  attrs?: TNodeAttributes & Record<string, any>;
   content?: TContentType;
   marks?: TMarkType[];
 };
@@ -93,7 +172,7 @@ export function addMark<TNodeType extends keyof NodeMapping>(
   }
 
   if (Array.isArray(mark)) {
-    node.marks.push.apply(node.marks, mark);
+    node.marks.push.apply(node.marks, mark.filter(Boolean));
   } else {
     node.marks.push(mark);
   }
@@ -111,6 +190,18 @@ export function createNode<TNodeType extends keyof NodeMapping>(
   options?: Partial<Omit<NodeMapping[TNodeType], "type">>
 ): NodeMapping[TNodeType] {
   return { type, ...options } as NodeMapping[TNodeType];
+}
+
+/**
+ * Create a ProseMirror mark.
+ * @param type The type of the mark.
+ * @param options Additional options for the mark.
+ */
+export function createMark<TMarkType extends keyof MarkMapping>(
+  type: TMarkType,
+  options?: Partial<Omit<MarkMapping[TMarkType], "type">>
+): MarkMapping[TMarkType] {
+  return { type, ...options } as MarkMapping[TMarkType];
 }
 
 /**
@@ -132,28 +223,6 @@ export function createText(text: string, marks?: MarkType[]): TextType {
 }
 
 /**
- * Check if a range is an inline style range.
- * @param range The range to check.
- * @returns `true` if the range is an inline style range, `false` otherwise.
- */
-export function isInlineStyleRange(
-  range: RawDraftInlineStyleRange | RawDraftEntityRange
-): range is RawDraftInlineStyleRange {
-  return "style" in range;
-}
-
-/**
- * Check if a range is an entity range.
- * @param range The range to check.
- * @returns `true` if the range is an entity range, `false` otherwise.
- */
-export function isEntityRange(
-  range: RawDraftInlineStyleRange | RawDraftEntityRange
-): range is RawDraftEntityRange {
-  return "key" in range;
-}
-
-/**
  * Check if a node is a document node.
  * @param node The node to check.
  * @returns `true` if the node is a document node, `false` otherwise.
@@ -164,20 +233,6 @@ export function isDocument(node: unknown): node is DocumentType {
     node !== null &&
     "type" in node &&
     node.type === "doc"
-  );
-}
-
-/**
- * Check if a node is a text node.
- * @param node The node to check.
- * @returns `true` if the node is a text node, `false` otherwise.
- */
-export function isDraftJSContent(node: unknown): node is DraftJSContent {
-  return (
-    typeof node === "object" &&
-    node !== null &&
-    "blocks" in node &&
-    "entityMap" in node
   );
 }
 
