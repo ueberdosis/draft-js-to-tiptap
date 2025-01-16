@@ -1,5 +1,11 @@
 # @tiptap/draftjs-to-tiptap
 
+## 0.1.1
+
+### Patch Changes
+
+- 18e41e9: Removed an unnecessary runtime dependency
+
 ## 0.1.0
 
 ### Minor Changes
